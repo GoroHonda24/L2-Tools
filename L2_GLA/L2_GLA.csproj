@@ -1,0 +1,522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>L2_GLA</RootNamespace>
+    <AssemblyName>L2_GLA</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\GLA\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Screenshot_7-removebg-preview.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6483BD31BD22B4A801BB4BA20A06F7A504BEF5DA</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>L2_GLA_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=30.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.30.0.1\lib\net47\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=6.2.8.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.6.2.8\lib\net462\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net462\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net462\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.21.9.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.21.9\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.1.3.5\lib\net462\K4os.Compression.LZ4.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Compression.LZ4.Streams, Version=1.3.5.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Compression.LZ4.Streams.1.3.5\lib\net462\K4os.Compression.LZ4.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="K4os.Hash.xxHash, Version=1.0.8.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
+      <HintPath>..\packages\K4os.Hash.xxHash.1.0.8\lib\net462\K4os.Hash.xxHash.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.0.0\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.1.0\lib\net462\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <HintPath>..\packages\odp.net.x64.112.3.20\lib\net40\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=2.0.12.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\ODP.NetCore.2.0.12.0\lib\netstandard2.0\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.7.0.2\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="ZstdSharp, Version=0.7.1.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZstdSharp.Port.0.7.1\lib\net461\ZstdSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\apiclient.cs" />
+    <Compile Include="Model\dashboardRepository.cs" />
+    <Compile Include="DBconnect.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_account.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_account.Designer.cs">
+      <DependentUpon>frm_account.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Brand_synch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Brand_synch.Designer.cs">
+      <DependentUpon>Frm_Brand_synch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_CMS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_CMS.Designer.cs">
+      <DependentUpon>Frm_CMS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Dashboard.designer.cs">
+      <DependentUpon>Frm_Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Dashboard_smart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Dashboard_smart.Designer.cs">
+      <DependentUpon>Frm_Dashboard_smart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Delete.Designer.cs">
+      <DependentUpon>Frm_Delete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_export.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_export.Designer.cs">
+      <DependentUpon>Frm_export.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_forgot_pass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_forgot_pass.Designer.cs">
+      <DependentUpon>Frm_forgot_pass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Gcash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Gcash.Designer.cs">
+      <DependentUpon>Frm_Gcash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_INC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_INC.designer.cs">
+      <DependentUpon>Frm_INC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Inc_logs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Inc_logs.Designer.cs">
+      <DependentUpon>Frm_Inc_logs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_insert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_insert.Designer.cs">
+      <DependentUpon>Frm_insert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_L2_Triage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_L2_Triage.Designer.cs">
+      <DependentUpon>Frm_L2_Triage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Log_in.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Log_in.designer.cs">
+      <DependentUpon>Frm_Log_in.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_main.designer.cs">
+      <DependentUpon>Frm_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_maya.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_maya.Designer.cs">
+      <DependentUpon>Frm_maya.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Optima.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Optima.Designer.cs">
+      <DependentUpon>Frm_Optima.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Splunk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Splunk.Designer.cs">
+      <DependentUpon>Frm_Splunk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Update_Brand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Update_Brand.Designer.cs">
+      <DependentUpon>Frm_Update_Brand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_update_status.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_update_status.Designer.cs">
+      <DependentUpon>Frm_update_status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_user_registration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_user_registration.Designer.cs">
+      <DependentUpon>Frm_user_registration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_variance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_variance.Designer.cs">
+      <DependentUpon>Frm_variance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Var_Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Var_Report.designer.cs">
+      <DependentUpon>Frm_Var_Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Var_update_Status.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Var_update_Status.Designer.cs">
+      <DependentUpon>Frm_Var_update_Status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Var_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Var_view.designer.cs">
+      <DependentUpon>frm_Var_view.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalVar.cs" />
+    <Compile Include="Model\variance.cs" />
+    <Compile Include="myConnectionString.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Variance\gcash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variance\gcash.Designer.cs">
+      <DependentUpon>gcash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Variance\maya.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variance\maya.Designer.cs">
+      <DependentUpon>maya.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Variance\queryFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variance\queryFormat.Designer.cs">
+      <DependentUpon>queryFormat.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_account.resx">
+      <DependentUpon>frm_account.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Brand_synch.resx">
+      <DependentUpon>Frm_Brand_synch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_CMS.resx">
+      <DependentUpon>Frm_CMS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Dashboard.resx">
+      <DependentUpon>Frm_Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Dashboard_smart.resx">
+      <DependentUpon>Frm_Dashboard_smart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Delete.resx">
+      <DependentUpon>Frm_Delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_export.resx">
+      <DependentUpon>Frm_export.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_forgot_pass.resx">
+      <DependentUpon>Frm_forgot_pass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Gcash.resx">
+      <DependentUpon>Frm_Gcash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_INC.resx">
+      <DependentUpon>Frm_INC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Inc_logs.resx">
+      <DependentUpon>Frm_Inc_logs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_insert.resx">
+      <DependentUpon>Frm_insert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_L2_Triage.resx">
+      <DependentUpon>Frm_L2_Triage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Log_in.resx">
+      <DependentUpon>Frm_Log_in.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_main.resx">
+      <DependentUpon>Frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_maya.resx">
+      <DependentUpon>Frm_maya.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Optima.resx">
+      <DependentUpon>Frm_Optima.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Splunk.resx">
+      <DependentUpon>Frm_Splunk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Update_Brand.resx">
+      <DependentUpon>Frm_Update_Brand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_update_status.resx">
+      <DependentUpon>Frm_update_status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_user_registration.resx">
+      <DependentUpon>Frm_user_registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_variance.resx">
+      <DependentUpon>Frm_variance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Var_Report.resx">
+      <DependentUpon>Frm_Var_Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Var_update_Status.resx">
+      <DependentUpon>Frm_Var_update_Status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Var_view.resx">
+      <DependentUpon>frm_Var_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Variance\gcash.resx">
+      <DependentUpon>gcash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Variance\maya.resx">
+      <DependentUpon>maya.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Variance\queryFormat.resx">
+      <DependentUpon>queryFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="..\..\..\postman\import files to DL\import files to DL\GL - Checker of MINs -to get brand-.postman_collection.json">
+      <Link>OpenAPIs\GL - Checker of MINs -to get brand-.postman_collection.json</Link>
+      <CodeGenerator>NSwagCSharp</CodeGenerator>
+    </None>
+    <None Include="L2_GLA_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\back_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\Screenshot_7-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icons\icons8_cancel_32.png" />
+    <None Include="Icons\back_16.png" />
+    <None Include="Icons\min_metadata.png" />
+    <None Include="Icons\brand_series.png" />
+    <None Include="Icons\bca_file.png" />
+    <None Include="Resources\kisspng-logo-amdocs-company-brand-trademark-5b9b05c79d7a91.522205051536886215645.jpg" />
+    <None Include="Resources\am5528a3b7-amdocs-logo-amdocs-code-and-technology-talk-amdocs-new-logo-clipart-full.png" />
+    <None Include="Resources\DOX.png" />
+    <Content Include="Screenshot_7-removebg-preview.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

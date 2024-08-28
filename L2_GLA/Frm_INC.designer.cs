@@ -70,7 +70,7 @@ namespace L2_GLA
             this.Column2,
             this.Column5,
             this.Column6});
-            this.dgvINC.Location = new System.Drawing.Point(129, 301);
+            this.dgvINC.Location = new System.Drawing.Point(209, 301);
             this.dgvINC.Name = "dgvINC";
             this.dgvINC.ReadOnly = true;
             this.dgvINC.RowHeadersVisible = false;
@@ -129,7 +129,7 @@ namespace L2_GLA
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(390, 261);
+            this.btnSave.Location = new System.Drawing.Point(470, 261);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(206, 34);
             this.btnSave.TabIndex = 23;
@@ -143,10 +143,11 @@ namespace L2_GLA
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(347, 151);
+            this.cmbStatus.Location = new System.Drawing.Point(427, 83);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(292, 28);
             this.cmbStatus.TabIndex = 22;
+            this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
             // 
             // cmbOwner
             // 
@@ -154,7 +155,7 @@ namespace L2_GLA
             this.cmbOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOwner.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbOwner.FormattingEnabled = true;
-            this.cmbOwner.Location = new System.Drawing.Point(347, 117);
+            this.cmbOwner.Location = new System.Drawing.Point(427, 117);
             this.cmbOwner.Name = "cmbOwner";
             this.cmbOwner.Size = new System.Drawing.Size(292, 28);
             this.cmbOwner.TabIndex = 21;
@@ -166,7 +167,7 @@ namespace L2_GLA
             this.cmbFC.DropDownWidth = 400;
             this.cmbFC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFC.FormattingEnabled = true;
-            this.cmbFC.Location = new System.Drawing.Point(347, 83);
+            this.cmbFC.Location = new System.Drawing.Point(427, 151);
             this.cmbFC.Name = "cmbFC";
             this.cmbFC.Size = new System.Drawing.Size(292, 28);
             this.cmbFC.Sorted = true;
@@ -176,7 +177,7 @@ namespace L2_GLA
             // 
             this.txtMIN.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtMIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMIN.Location = new System.Drawing.Point(347, 51);
+            this.txtMIN.Location = new System.Drawing.Point(427, 51);
             this.txtMIN.Name = "txtMIN";
             this.txtMIN.Size = new System.Drawing.Size(292, 26);
             this.txtMIN.TabIndex = 19;
@@ -185,7 +186,7 @@ namespace L2_GLA
             // 
             this.txtINC.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtINC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtINC.Location = new System.Drawing.Point(347, 19);
+            this.txtINC.Location = new System.Drawing.Point(427, 19);
             this.txtINC.Name = "txtINC";
             this.txtINC.Size = new System.Drawing.Size(292, 26);
             this.txtINC.TabIndex = 18;
@@ -196,7 +197,7 @@ namespace L2_GLA
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(297, 53);
+            this.label5.Location = new System.Drawing.Point(377, 53);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 20);
             this.label5.TabIndex = 17;
@@ -208,7 +209,7 @@ namespace L2_GLA
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(279, 155);
+            this.label4.Location = new System.Drawing.Point(359, 87);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 20);
             this.label4.TabIndex = 16;
@@ -220,7 +221,7 @@ namespace L2_GLA
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(280, 120);
+            this.label3.Location = new System.Drawing.Point(360, 120);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 20);
             this.label3.TabIndex = 15;
@@ -232,7 +233,7 @@ namespace L2_GLA
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(181, 86);
+            this.label2.Location = new System.Drawing.Point(261, 154);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(163, 20);
             this.label2.TabIndex = 14;
@@ -244,7 +245,7 @@ namespace L2_GLA
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(286, 22);
+            this.label1.Location = new System.Drawing.Point(366, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 20);
             this.label1.TabIndex = 13;
@@ -254,7 +255,7 @@ namespace L2_GLA
             // 
             this.txtnotes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtnotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnotes.Location = new System.Drawing.Point(347, 185);
+            this.txtnotes.Location = new System.Drawing.Point(427, 185);
             this.txtnotes.Multiline = true;
             this.txtnotes.Name = "txtnotes";
             this.txtnotes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -267,7 +268,7 @@ namespace L2_GLA
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(284, 214);
+            this.label6.Location = new System.Drawing.Point(364, 214);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 20);
             this.label6.TabIndex = 27;
@@ -278,7 +279,7 @@ namespace L2_GLA
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(193)))), ((int)(((byte)(108)))));
-            this.ClientSize = new System.Drawing.Size(927, 780);
+            this.ClientSize = new System.Drawing.Size(1086, 780);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtnotes);
             this.Controls.Add(this.dgvINC);

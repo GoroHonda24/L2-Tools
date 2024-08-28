@@ -7,6 +7,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Transactions;
 using Org.BouncyCastle.Bcpg;
 using System.Security.Cryptography;
+using static L2_GLA.OpenAPIs.PostmanModels;
 
 namespace L2_GLA
 {
@@ -16,6 +17,15 @@ namespace L2_GLA
         public static bool admin = false;
         public static bool login = true;
         public static int maxID = 0, mayarowZ;
+
+       // public PostmanEnvironment environment;
+        public static string rawHookData;
+        public static string rawHookToken;
+        public static DateTime dataExpirationTime;
+        public static DateTime tokenExpirationTime;
+        public const int dataValidityMinutes = 1440;  // Set appropriate expiration time
+        public const int tokenValidityMinutes = 20; // Set appropriate expiration time
+
         public static string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

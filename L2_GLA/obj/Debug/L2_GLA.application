@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="L2_GLA.exe.manifest" size="23393">
+    <dependentAssembly dependencyType="install" codebase="L2_GLA.exe.manifest" size="26139">
       <assemblyIdentity name="L2_GLA.exe" version="1.0.0.4" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YGHWhtxGM9WNLHCUzil6qJMAvFoZnRz7J7woJZecug8=</dsig:DigestValue>
+        <dsig:DigestValue>tfVDjQst4udj8Fm/y5pAuNzMDfVjS3LJWvTgQsWM1Mo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -41,6 +41,7 @@ namespace L2_GLA
             this.btnINC = new System.Windows.Forms.Button();
             this.btnMNP = new System.Windows.Forms.Button();
             this.panelVariance = new System.Windows.Forms.Panel();
+            this.btnIload = new System.Windows.Forms.Button();
             this.btnVarianceReport = new System.Windows.Forms.Button();
             this.btnVarianceMaya = new System.Windows.Forms.Button();
             this.btnVarianceGcash = new System.Windows.Forms.Button();
@@ -62,7 +63,7 @@ namespace L2_GLA
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnIload = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelVariance.SuspendLayout();
             this.panelPayment.SuspendLayout();
@@ -133,6 +134,7 @@ namespace L2_GLA
             this.panel1.Controls.Add(this.btnL2);
             this.panel1.Controls.Add(this.btnINC);
             this.panel1.Controls.Add(this.btnMNP);
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.panelVariance);
             this.panel1.Controls.Add(this.btnVariance);
             this.panel1.Controls.Add(this.panelPayment);
@@ -157,7 +159,7 @@ namespace L2_GLA
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(0, 1141);
+            this.btnLogout.Location = new System.Drawing.Point(0, 1191);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnLogout.Size = new System.Drawing.Size(293, 50);
@@ -175,7 +177,7 @@ namespace L2_GLA
             this.btnCMS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCMS.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnCMS.ForeColor = System.Drawing.Color.White;
-            this.btnCMS.Location = new System.Drawing.Point(0, 1091);
+            this.btnCMS.Location = new System.Drawing.Point(0, 1141);
             this.btnCMS.Name = "btnCMS";
             this.btnCMS.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnCMS.Size = new System.Drawing.Size(293, 50);
@@ -193,7 +195,7 @@ namespace L2_GLA
             this.btnL2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnL2.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnL2.ForeColor = System.Drawing.Color.White;
-            this.btnL2.Location = new System.Drawing.Point(0, 1041);
+            this.btnL2.Location = new System.Drawing.Point(0, 1091);
             this.btnL2.Name = "btnL2";
             this.btnL2.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnL2.Size = new System.Drawing.Size(293, 50);
@@ -211,7 +213,7 @@ namespace L2_GLA
             this.btnINC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnINC.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnINC.ForeColor = System.Drawing.Color.White;
-            this.btnINC.Location = new System.Drawing.Point(0, 991);
+            this.btnINC.Location = new System.Drawing.Point(0, 1041);
             this.btnINC.Name = "btnINC";
             this.btnINC.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnINC.Size = new System.Drawing.Size(293, 50);
@@ -229,7 +231,7 @@ namespace L2_GLA
             this.btnMNP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMNP.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnMNP.ForeColor = System.Drawing.Color.White;
-            this.btnMNP.Location = new System.Drawing.Point(0, 941);
+            this.btnMNP.Location = new System.Drawing.Point(0, 991);
             this.btnMNP.Name = "btnMNP";
             this.btnMNP.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnMNP.Size = new System.Drawing.Size(293, 50);
@@ -251,6 +253,24 @@ namespace L2_GLA
             this.panelVariance.Name = "panelVariance";
             this.panelVariance.Size = new System.Drawing.Size(293, 197);
             this.panelVariance.TabIndex = 11;
+            // 
+            // btnIload
+            // 
+            this.btnIload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(193)))), ((int)(((byte)(108)))));
+            this.btnIload.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnIload.FlatAppearance.BorderSize = 0;
+            this.btnIload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIload.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
+            this.btnIload.ForeColor = System.Drawing.Color.White;
+            this.btnIload.Location = new System.Drawing.Point(0, 150);
+            this.btnIload.Name = "btnIload";
+            this.btnIload.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btnIload.Size = new System.Drawing.Size(293, 50);
+            this.btnIload.TabIndex = 7;
+            this.btnIload.Text = "iLoad";
+            this.btnIload.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIload.UseVisualStyleBackColor = false;
+            this.btnIload.Click += new System.EventHandler(this.btnIload_Click);
             // 
             // btnVarianceReport
             // 
@@ -578,23 +598,23 @@ namespace L2_GLA
             this.label2.TabIndex = 3;
             this.label2.Text = "Smart\r\n       Tool";
             // 
-            // btnIload
+            // button1
             // 
-            this.btnIload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(193)))), ((int)(((byte)(108)))));
-            this.btnIload.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnIload.FlatAppearance.BorderSize = 0;
-            this.btnIload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIload.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
-            this.btnIload.ForeColor = System.Drawing.Color.White;
-            this.btnIload.Location = new System.Drawing.Point(0, 150);
-            this.btnIload.Name = "btnIload";
-            this.btnIload.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.btnIload.Size = new System.Drawing.Size(293, 50);
-            this.btnIload.TabIndex = 7;
-            this.btnIload.Text = "iLoad";
-            this.btnIload.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIload.UseVisualStyleBackColor = false;
-            this.btnIload.Click += new System.EventHandler(this.btnIload_Click);
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(0, 941);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(293, 50);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Postman";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Frm_main
             // 
@@ -660,5 +680,6 @@ namespace L2_GLA
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnINC;
         private System.Windows.Forms.Button btnIload;
+        private System.Windows.Forms.Button button1;
     }
 }

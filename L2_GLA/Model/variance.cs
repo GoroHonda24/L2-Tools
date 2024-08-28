@@ -19,7 +19,7 @@ using OfficeOpenXml.Drawing.Slicer.Style;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using MySqlX.XDevAPI.Relational;
-
+using Oracle.ManagedDataAccess.Client;
 
 namespace L2_GLA.Model
 {
@@ -27,7 +27,7 @@ namespace L2_GLA.Model
     {
         private readonly DBconnect _conn;
         private int count = 0;
-        private int action = 0, app = 0, iload = 0, remark= 0;
+        private int action = 0, app = 0, iload = 0, remark = 0;
         private string table = "";
         List<string> appTransactionNumbers = new List<string>();
         List<string> transStatus = new List<string>();
@@ -57,7 +57,7 @@ namespace L2_GLA.Model
                 }
             }
         }
-        
+
         public async Task fileconfig(string vartype)
         {
             using (MySqlCommand selectquery = new MySqlCommand("SELECT * FROM brand_synch_2.tbl_variance_config where vartype = @vartype ", _conn.connection))
@@ -71,7 +71,7 @@ namespace L2_GLA.Model
                         app = reader.GetInt32(2);
                         iload = reader.GetInt32(3);
                         remark = reader.GetInt32(4);
-                    }                                       
+                    }
                 }
             }
         }
@@ -302,11 +302,13 @@ namespace L2_GLA.Model
                             processedIds.Add(id);
                             //Console.WriteLine($"Processing ID: {id}");
                             string newstatus = "";
-                            if (variancetype== "maya")
+                            if (variancetype == "maya")
                             {
                                 if (record.status != "ELP_SUCCESSFUL")
                                 {
-                                    newstatus = "Failed for Refund";
+
+
+                                    //newstatus = "Failed for Refund";
                                 }
                                 else if (record.status == "ELP_SUCCESSFUL")
                                 {
@@ -350,10 +352,10 @@ namespace L2_GLA.Model
                                 {
                                     newstatus = "Not Subject for Refund";
                                 }
-                                
+
                             }
-                            
-                            
+
+
                             // Update the existing record
                             string updateQuery = "UPDATE `brand_synch_2`.`tbl_variance_maya` " +
                                                  "SET `app_transaction` = @app, `iload` = @iload, `dbStatus` = @status, `remarks` = @remarks " +
@@ -385,11 +387,11 @@ namespace L2_GLA.Model
                 {
                     await updateRemarks.ExecuteNonQueryAsync();
                 }
-                using (MySqlCommand updateRemarks = new MySqlCommand("update brand_synch_2.tbl_variance_maya set remarks = 'Failed - for Refund' where iload = 'Not Found' ", _conn.connection))
-                {
-                    await updateRemarks.ExecuteNonQueryAsync();
-                }
-                await formattoquery(filePath,null);
+                //using (MySqlCommand updateRemarks = new MySqlCommand("update brand_synch_2.tbl_variance_maya set remarks = 'Failed - for Refund' where iload = 'Not Found' ", _conn.connection))
+                //{
+                //    await updateRemarks.ExecuteNonQueryAsync();
+                //}
+                await formattoquery(filePath, null);
             }
             catch (MySqlException ex)
             {
@@ -404,6 +406,65 @@ namespace L2_GLA.Model
                 System.Windows.MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
+
+        //public async Task iloadquery()
+        //{
+        //    string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=t_amagarang;Password=angelALODIA@@12";
+
+        //    using (OracleConnection connection = new OracleConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            connection.Open();
+        //            using (OracleCommand cmd = new OracleCommand("SELECT DECODE(voidcode, '0000', 'SUCCESSFUL', 'FAILED') AS \"STATUS\", (SELECT de.denom_name FROM oltp_eload_user.EDB_DENOMS_v de WHERE de.plancode = lg.plancode)" +
+        //                     " AS \"DENOM_NAME\", (SELECT cf.val1 FROM oltp_eload_user.EDB_APPLICATION_CONFIGS_v cf WHERE cf.application_code = 'EDB' AND cf.name = 'System Channel ID' AND cf.key = NVL(SUBSTR(NULL, 1, 3), SUBSTR(txn_rrn, 1, 3)))" +
+        //                     " AS \"CHANNEL\", NVL(SUBSTR(evc_rrn, 4), txn_rrn) AS \"REFERENCE_NUMBER\" FROM oltp_eload_user.rtl_txn_logs lg WHERE txn_end BETWEEN to_timestamp(:start_timestamp, 'YYYYMMDDHH24MISS.FF6')" +
+        //                     " AND to_timestamp(:end_timestamp, 'YYYYMMDDHH24MISS.FF6') AND SUBSTR(evc_rrn, 4) in (:elp)", connection))
+        //            {
+        //                // Format the dateTimePicker1 value
+        //                //string formattedDateTime = dtpto.Value.ToString("yyyyMMdd") + "000000.000000";
+        //                //cmd.Parameters.Add(":start_timestamp", OracleDbType.Varchar2).Value = formattedDateTime;
+        //                ////    label3.Text = formattedDateTime;
+        //                //formattedDateTime = dtpto.Value.AddDays(2).ToString("yyyyMMdd") + "235959.999999";
+        //                //cmd.Parameters.Add(":end_timestamp", OracleDbType.Varchar2).Value = formattedDateTime;
+        //                ////  label4.Text = formattedDateTime;
+
+        //                //cmd.Parameters.Add(":elp", OracleDbType.Varchar2).Value = elp;
+        //                //using (OracleDataReader Reader = cmd.ExecuteReader())
+        //                //{
+        //                //    while (Reader.Read())
+        //                //    {
+        //                //        //     label5.Text = Reader["STATUS"].ToString();
+        //                //        using (MySqlCommand update_query = new MySqlCommand("UPDATE `brand_synch_2`.`investigation` SET `iload` = @status , `Remarks` = @remarks  WHERE REPLACE(investigation.ELP_Reference_Number, ' | success', '') = @elp", conn.connection))
+        //                //        {
+        //                //            update_query.Parameters.AddWithValue("@status", Reader["STATUS"]);
+        //                //            if (Reader["STATUS"].ToString() == "SUCCESSFUL")
+        //                //            {
+        //                //                update_query.Parameters.AddWithValue("@remarks", "Not Subject for Refund");
+        //                //            }
+        //                //            else
+        //                //            {
+        //                //                update_query.Parameters.AddWithValue("@remarks", "Failed - For Refund");
+        //                //            }
+        //                //            update_query.Parameters.AddWithValue("@elp", Reader["REFERENCE_NUMBER"]);
+        //                //            update_query.ExecuteNonQuery();
+        //                //        }
+        //                //    }
+
+        //                //}
+
+        //            }
+
+        //            connection.Close();
+        //            System.Windows.MessageBox.Show("successfully.");
+                    
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            System.Windows.MessageBox.Show("Error: " + ex.Message);
+        //        }
+        //    }
+        //}
 
         public async Task SaveToDatabaseAsync(string appTransactionData, string iloadData, string actionData)
         {

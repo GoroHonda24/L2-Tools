@@ -732,3 +732,12 @@ C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.application
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.csproj.Up2Date
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.exe
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.pdb
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\RestSharp.dll
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Text.Encodings.Web.dll
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Text.Json.dll
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.ValueTuple.dll
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\RestSharp.xml
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Text.Encodings.Web.xml
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Text.Json.xml
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.ValueTuple.xml
+C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.OpenAPIs.GL.resources

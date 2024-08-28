@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using L2_GLA.Variance;
+using L2_GLA.OpenAPIs;
 
 namespace L2_GLA
 {
@@ -500,6 +501,22 @@ namespace L2_GLA
                 Pmain.Controls.Add(frmobj);
                 frmobj.Show();
 
+            }
+            hideSubmenu();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (lbltitle.Text != "Postman")
+            {
+                CloseActiveForm();
+                lbltitle.Text = "Postman";
+                GL frmobj = new GL();
+                frmobj.TopLevel = false;
+                frmobj.FormBorderStyle = FormBorderStyle.None;
+                frmobj.Dock = DockStyle.Fill;
+                Pmain.Controls.Add(frmobj);
+                frmobj.Show();
             }
             hideSubmenu();
         }

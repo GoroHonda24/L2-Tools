@@ -137,9 +137,9 @@ namespace L2_GLA
                 return;
             }
 
-            if (string.IsNullOrEmpty(cmbFC.Text))
+            if (string.IsNullOrEmpty(cmbStatus.Text))
             {
-                MessageBox.Show("Functional Category is required");
+                MessageBox.Show("Status is required");
                 return;
             }
 
@@ -173,6 +173,18 @@ namespace L2_GLA
             }
             Data_clear();
             Load_inc();
+        }
+
+        private void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbStatus.Text == "RESOLVED / REJECTED"  || cmbStatus.Text == "RESOLVED / CLOSED")
+            {
+                cmbOwner.Text = "Smart App";
+            }
+            else
+            {
+                cmbOwner.SelectedIndex = -1;
+            }
         }
     }
 }

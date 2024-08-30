@@ -19,6 +19,7 @@ using OfficeOpenXml.Drawing.Slicer.Style;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using MySqlX.XDevAPI.Relational;
+using Oracle.ManagedDataAccess.Client;
 
 
 namespace L2_GLA.Model
@@ -315,15 +316,9 @@ namespace L2_GLA.Model
                             string newstatus = "";
                             if (variancetype== "maya")
                             {
-<<<<<<< HEAD
-                                if (record.status != "ELP_SUCCESSFUL")
-                                {
-                                    newstatus = "Failed for Refund";
-                                }
-                                else if (record.status == "ELP_SUCCESSFUL")
-=======
+                                
                                 if (record.status == "ELP_SUCCESSFUL")
->>>>>>> fa7e979 (Maya variance without iload checking)
+// fa7e979 (Maya variance without iload checking)
                                 {
                                     // iload checking
                                     newstatus = record.status;
@@ -434,8 +429,6 @@ namespace L2_GLA.Model
             }
         }
 
-<<<<<<< HEAD
-=======
         public async Task iloadquery()
         {
             string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=t_amagarang;Password=angelALODIA@@12";
@@ -495,7 +488,7 @@ namespace L2_GLA.Model
             }
         }
 
->>>>>>> fa7e979 (Maya variance without iload checking)
+// fa7e979 (Maya variance without iload checking)
         public async Task SaveToDatabaseAsync(string appTransactionData, string iloadData, string actionData)
         {
             try

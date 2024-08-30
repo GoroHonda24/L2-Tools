@@ -151,14 +151,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="L2_GLA.exe" size="3563448">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="L2_GLA.exe" size="3574712">
       <assemblyIdentity name="L2_GLA" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GNY3SdBhqH4FoZgsSiCEVZkt3nirf6S/kmSEw+kFDms=</dsig:DigestValue>
+        <dsig:DigestValue>gAXaGCnRIyDnyiGIGkCzXdXLbKmSZ4YC9CpLyAKdzZI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

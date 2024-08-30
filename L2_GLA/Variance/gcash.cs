@@ -75,12 +75,16 @@ namespace L2_GLA.Variance
 
         private async void btnImportSmartDB_Click(object sender, EventArgs e)
         {
+            DatetimeModal frm = new DatetimeModal();
+            frm.ShowDialog();
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                await variance.importSmartDatabase(openFileDialog.FileName, "gcash");
+               // await variance.importSmartDatabase(openFileDialog.FileName, "gcash");
+                await variance.ImportSmartDatabaseAsync(openFileDialog.FileName, "gcash");
                 await LoadGcashResult();
             }
         }

@@ -34,11 +34,11 @@ namespace L2_GLA
                         DataGridViewRow row = (DataGridViewRow)dgvtblreport.Rows[0].Clone();
                         row.Cells[0].Value = Reader["File_name"];
                         row.Cells[1].Value = Reader["Var_type"];
-                        row.Cells[2].Value = Reader["Assigned_to"];
-                        row.Cells[3].Value = Reader["Status"];
-                        row.Cells[4].Value = Reader["Done_by"];
-                        row.Cells[5].Value = Reader["created_at"];
-                        row.Cells[6].Value = Reader["end_at"].ToString();
+                       // row.Cells[2].Value = Reader["Assigned_to"];
+                        row.Cells[2].Value = Reader["Status"];
+                        row.Cells[3].Value = Reader["Done_by"];
+                        row.Cells[4].Value = Reader["created_at"];
+                        row.Cells[5].Value = Reader["end_at"].ToString();
                         dgvtblreport.Rows.Add(row);
 
                     }

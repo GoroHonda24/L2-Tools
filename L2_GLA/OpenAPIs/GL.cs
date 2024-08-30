@@ -70,9 +70,15 @@ namespace L2_GLA.OpenAPIs
 
                 if (response.IsSuccessful)
                 {
-                    // Deserialize the response if needed
-                    var responseData = JsonConvert.DeserializeObject(response.Content);
-                    txtgl.Text =  "API call successful. Response data: " + responseData;
+                    // Deserialize the response content into a dynamic object
+                    var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
+                    var brandInfoList = new List<dynamic> { responseObject.BrandInfoOutput };
+
+                    // Convert to DataTable using the provided method
+                    DataTable dataTable = ConvertToDataTable(brandInfoList);
+
+                    // Bind the DataTable to dataGridView2
+                    dataGridView2.DataSource = dataTable;
                 }
                 else
                 {
@@ -83,6 +89,7 @@ namespace L2_GLA.OpenAPIs
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+
             try
             {
                 // Check if data is expired or null, and run GetData if needed
@@ -109,123 +116,8 @@ namespace L2_GLA.OpenAPIs
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
-            #region
-            //// Step 1: Run GetData
-            //string baseUrl2 = "https://smart-consumer-ws-eb.multidemos.com";
-            //string getDataEndpoint = "/api/v2/hook/generate-data";
-
-            //var client2 = new RestClient(baseUrl2);
-            //var getDataRequest = new RestRequest(getDataEndpoint, Method.Get);
-
-            //try
-            //{
-            //    // Execute GetData
-            //    var getDataResponse = await client2.ExecuteAsync(getDataRequest);
-
-            //    if (!getDataResponse.IsSuccessful)
-            //    {
-            //        MessageBox.Show("GetData call failed: " + getDataResponse.StatusCode);
-            //        return;
-            //    }
-
-            //    // Save response to a variable
-            //    string rawHookData = getDataResponse.Content.Trim('\"'); // Trim quotes if present
-
-            //    // Step 2: Run GetToken
-            //    string hookUrl = "https://api01.smart.com.ph/HookAPI_Multisys"; // Ensure this is the correct base URL for your API
-            //    string getTokenEndpoint = "/auth.svc/json/GetToken";
-            //    var getTokenRequest = new RestRequest(hookUrl + getTokenEndpoint, Method.Post);
-            //    getTokenRequest.AddHeader("Content-Type", "application/json");
-
-            //    // Construct the JSON body manually to avoid serialization issues
-            //    string jsonBody = $"{{\"ConsumerKey\":\"multisys.prod\",\"Data\":\"{rawHookData}\"}}";
-            //    //  MessageBox.Show("GetToken Request Body: " + jsonBody); // Log for debugging
-            //    getTokenRequest.AddJsonBody(jsonBody);
-
-            //    var getTokenResponse = await client2.ExecuteAsync(getTokenRequest);
-
-            //    // Log the raw response
-            //    // MessageBox.Show("GetToken Raw Response: " + getTokenResponse.Content);
-
-            //    if (!getTokenResponse.IsSuccessful)
-            //    {
-            //        MessageBox.Show("GetToken call failed: " + getTokenResponse.StatusCode);
-            //        return;
-            //    }
-
-            //    // Parse token from response
-            //    dynamic tokenResponse = JsonConvert.DeserializeObject(getTokenResponse.Content);
-            //    string rawHookToken = tokenResponse?.Token?.ToString(); // Safely accessing Token
-
-            //    // Check if the token is empty or null
-            //    if (string.IsNullOrEmpty(rawHookToken))
-            //    {
-            //        MessageBox.Show("Token extraction failed.");
-            //        return;
-            //    }
-
-            //    // Log the extracted token
-            //    // MessageBox.Show("Extracted Token: " + rawHookToken);
-
-            //    // Step 3: Run GetBrandInfo
-            //    string getBrandInfoEndpoint = "/external.svc/json/GetBrandInfo";
-            //    var getBrandInfoRequest = new RestRequest(hookUrl + getBrandInfoEndpoint, Method.Post);
-            //    getBrandInfoRequest.AddHeader("Content-Type", "application/json");
-
-            //    // Validate AccountNumber
-            //    string accountNumber = textBox1.Text.Trim(); // Assume you get this from a TextBox for user input
-            //    if (string.IsNullOrWhiteSpace(accountNumber))
-            //    {
-            //        MessageBox.Show("Account number is required.");
-            //        return;
-            //    }
-
-            //    // Add body with AccountNumber and Token
-            //    var getBrandInfoRequestBody = new
-            //    {
-            //        AccountNumber = accountNumber, // Ensure this is correctly set
-            //        Token = rawHookToken // Use the token obtained from GetToken call
-            //    };
-
-            //    // Serialize the request body to JSON and log
-            //    string brandInfoJsonBody = JsonConvert.SerializeObject(getBrandInfoRequestBody);
-            //    //MessageBox.Show("GetBrandInfo Request Body: " + brandInfoJsonBody); // Log for debugging
-            //    getBrandInfoRequest.AddJsonBody(brandInfoJsonBody);
-
-            //    var getBrandInfoResponse = await client2.ExecuteAsync(getBrandInfoRequest);
-
-            //    if (getBrandInfoResponse.IsSuccessful)
-            //    {
-            //        // Display GetBrandInfo response
-            //        string formattedJson = JsonConvert.SerializeObject(
-            //            JsonConvert.DeserializeObject(getBrandInfoResponse.Content),
-            //            Formatting.Indented);
-
-            //        txthook.Text = formattedJson; // Display formatted JSON in TextBox
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("GetBrandInfo call failed: " + getBrandInfoResponse.StatusCode);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("An error occurred: " + ex.Message);
-            //}
-            #endregion
-        }
-
-        private void GL_Load(object sender, EventArgs e)
-        {
 
         }
-
-        private async void button2_Click(object sender, EventArgs e)
-        {
-
-            
-        }
-
         // Method to run GetData
         private async Task RunGetDataAsync()
         {
@@ -310,19 +202,10 @@ namespace L2_GLA.OpenAPIs
             {
                 // Deserialize the response content into a dynamic object or a defined class
                 var responseObject = JsonConvert.DeserializeObject<dynamic>(getBrandInfoResponse.Content);
-
-                // Assuming the data to be displayed is in a list/array format within the response
-                // For example, responseObject.BrandInfoOutput could be a list of objects
-                // Convert it to a List that can be bound to the DataGridView
                 var brandInfoList = new List<dynamic> { responseObject.BrandInfoOutput };
 
                 // Bind the list to the DataGridView
                 dataGridView1.DataSource = brandInfoList;
-
-                // Alternatively, you can convert the object to a DataTable and bind it to DataGridView
-                // This method is more common when you need more control over the data
-                //var dataTable = ConvertToDataTable(brandInfoList);
-                //dataGridView1.DataSource = dataTable;
             }
             else
             {

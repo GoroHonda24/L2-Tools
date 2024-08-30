@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using L2_GLA.Variance;
 using MySql.Data.MySqlClient;
 namespace L2_GLA
 {
@@ -80,6 +81,31 @@ namespace L2_GLA
 
             }
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            DatetimeModal ojbform = new DatetimeModal();
+            ojbform.ShowDialog();
+
+            // Accessing the values from the modal form  
+            DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
+            DateTime dateto = DatetimeModal.dateto;
+
+            // Ensure the dates are correctly set before formatting.  
+            if (datefrom != default(DateTime) && dateto != default(DateTime))
+            {
+                string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
+                string formattedDateTo = dateto.AddDays(2).ToString("yyyyMMdd") + "235959.999999"; // End of the day after adding 2 days  
+
+                // Output for debugging  
+                System.Diagnostics.Debug.WriteLine($"Formatted From: {formattedDateFrom}");
+                System.Diagnostics.Debug.WriteLine($"Formatted To: {formattedDateTo}");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Date values are not initialized correctly.");
+            }
         }
     }
 }

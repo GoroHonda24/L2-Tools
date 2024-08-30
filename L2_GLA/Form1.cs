@@ -12,6 +12,7 @@ using MySql.Data.MySqlClient;
 using Oracle.ManagedDataAccess.Client;
 using System.Windows.Controls;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using L2_GLA.Variance;
 
 namespace L2_GLA
 {
@@ -85,5 +86,34 @@ namespace L2_GLA
             }
         }
 
+        private void dtpto_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DatetimeModal ojbform = new DatetimeModal();
+            ojbform.ShowDialog();
+
+            // Accessing the values from the modal form  
+            DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
+            DateTime dateto = DatetimeModal.dateto;
+
+            // Ensure the dates are correctly set before formatting.  
+            if (datefrom != default(DateTime) && dateto != default(DateTime))
+            {
+                string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
+                string formattedDateTo = dateto.ToString("yyyyMMdd") + "235959.999999"; // End of the day after adding 2 days  
+
+                // Output for debugging  
+                System.Diagnostics.Debug.WriteLine($"Formatted From: {formattedDateFrom}");
+                System.Diagnostics.Debug.WriteLine($"Formatted To: {formattedDateTo}");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Date values are not initialized correctly.");
+            }
+        }
     }
 }

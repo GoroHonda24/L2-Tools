@@ -28,9 +28,13 @@ namespace L2_GLA.Model
         private readonly DBconnect _conn;
         private int count = 0;
         private int action = 0, app = 0, iload = 0, remark = 0;
-        private string table = "";
+       // private string table = "";
         List<string> appTransactionNumbers = new List<string>();
         List<string> transStatus = new List<string>();
+
+
+        string IloadElp, iloadStatus, typeofvariance="";
+
         public variance()
         {
             _conn = new DBconnect();
@@ -71,6 +75,7 @@ namespace L2_GLA.Model
                         app = reader.GetInt32(2);
                         iload = reader.GetInt32(3);
                         remark = reader.GetInt32(4);
+                        typeofvariance = reader.GetString(5);
                     }
                 }
             }
@@ -80,14 +85,17 @@ namespace L2_GLA.Model
         {
             try
             {
-                HashSet<string> app_value = new HashSet<string>();
-                HashSet<string> iload_value = new HashSet<string>();
+                //HashSet<string> app_value = new HashSet<string>();
+                //HashSet<string> iload_value = new HashSet<string>();
+                List<string> app_value = new List<string>();
+                List<string> iload_value = new List<string>();
+
 
                 if (string.IsNullOrEmpty(GlobalVar.filepath))
                 {
                     FileInfo fileInfo = new FileInfo(filename);
-                    GlobalVar.filepath = fileInfo.FullName;
-
+                    
+                    Console.WriteLine($"{filename} : Updating file {vartype}");
                     using (ExcelPackage package = new ExcelPackage(fileInfo))
                     {
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
@@ -98,16 +106,17 @@ namespace L2_GLA.Model
 
                         if (worksheet.Dimension == null)
                         {
-                            throw new Exception("Worksheet dimensions are null. Please check the Excel file.");
+                            System.Windows.MessageBox.Show("Please check the Excel file. Sheet is empty");
+                            return;
                         }
-
+                        GlobalVar.filepath = fileInfo.FullName;
                         int rowCount = worksheet.Dimension.Rows;
 
                         for (int row = 2; row <= rowCount; row++)
                         {
                             if (vartype == "maya")
                             {
-                                table = "tbl_variance_maya";
+                                //table = "tbl_variance_maya";
                                 string columnZ = worksheet.Cells[row, action].Text; // Column Z
                                 if (columnZ == "Refund to customer" || columnZ == "Load Reversal or Retry Payment Charging")
                                 {
@@ -128,12 +137,12 @@ namespace L2_GLA.Model
                             }
                             else if (vartype == "gcash")
                             {
-                                table = "tbl_variance_gcash";
-                                string columnZ = worksheet.Cells[row, action].Text; // Column Z
-                                if (columnZ == "Refund to Customer" || columnZ == "Load Reversal or Retry Payment Charging")
+                                // table = "tbl_variance_gcash";
+                                string clmAction = worksheet.Cells[row, action].Text;
+                                if (clmAction == "Refund to Customer" || clmAction == "Load Reversal or Retry Payment Charging")
                                 {
-                                    string afColumnValue = worksheet.Cells[row, app].Text; // AF column is the 32nd column
-                                    string[] splitValues = afColumnValue.Split('|');
+                                    string clmAppTrans = worksheet.Cells[row, app].Text; // AF column is the 32nd column
+                                    string[] splitValues = clmAppTrans.Split('|');
                                     if (splitValues.Length >= 0)
                                     {
                                         string app = splitValues[0].Trim();
@@ -141,8 +150,8 @@ namespace L2_GLA.Model
                                         string iload = splitValues[2].Trim();
                                         iload_value.Add(iload);
 
-                                        await SaveToDatabaseAsync(app, iload, columnZ);
-                                        // Console.WriteLine($"Processed row {row}: columnW = {app}, iload = {iload}, action = {columnZ}");
+                                        await SaveToDatabaseAsync(app, iload, clmAction);
+                                        Console.WriteLine($"Processed row {row}: columnW = {app}, iload = {iload}, action = {clmAction}");
                                     }
                                 }
                             }
@@ -160,7 +169,7 @@ namespace L2_GLA.Model
                 else if (!string.IsNullOrEmpty(GlobalVar.filepath))
                 {
                     filename = GlobalVar.filepath;
-
+                    Console.WriteLine($"{filename} : Updating file {typeofvariance}");
                     FileInfo fileInfo = new FileInfo(filename);
                     using (ExcelPackage package = new ExcelPackage(fileInfo))
                     {
@@ -179,38 +188,90 @@ namespace L2_GLA.Model
 
                         for (int row = 2; row <= rowCount; row++)
                         {
-                            string columnZ = worksheet.Cells[row, action].Text; // Column Z
-                            if (columnZ == "Refund to customer" || columnZ == "Load Reversal or Retry Payment Charging")
+                            if(typeofvariance == "maya")
                             {
-                                string columnW = worksheet.Cells[row, app].Text; // Column W
-                                app_value.Add(columnW);
-
-                                string columnY = worksheet.Cells[row, iload].Text; // Column Y
-                                string[] columnYParts = columnY.Split('|');
-
-                                if (columnYParts.Length >= 1)
+                                 string columnZ = worksheet.Cells[row, action].Text; // Column Z
+                                if (columnZ == "Refund to customer" || columnZ == "Load Reversal or Retry Payment Charging")
                                 {
-                                    string iload = columnYParts[0].Trim();
-                                    string query = "SELECT remarks FROM brand_synch_2.tbl_variance_maya WHERE app_transaction = @columnW OR iload = @iload";
+                                    string columnW = worksheet.Cells[row, app].Text; // Column W
+                                   // app_value.Add(columnW);
 
-                                    using (MySqlCommand command = new MySqlCommand(query, _conn.connection))
+                                    string columnY = worksheet.Cells[row, iload].Text; // Column Y
+                                    string[] columnYParts = columnY.Split('|');
+
+                                    if (columnYParts.Length >= 1)
                                     {
-                                        command.Parameters.AddWithValue("@columnW", columnW);
-                                        command.Parameters.AddWithValue("@iload", iload);
-
-                                        using (var reader = await command.ExecuteReaderAsync())
+                                        string iload = columnYParts[0].Trim();
+                                        string query;
+                                        if (columnW != "Not Found")
                                         {
-                                            if (await reader.ReadAsync())
+                                             query = $"SELECT remarks FROM {GlobalVar.tableName} WHERE app_transaction = @columnW";
+                                        }else
+                                        {
+                                            query = $"SELECT remarks FROM {GlobalVar.tableName} WHERE iload = @iload";
+                                        }                                    
+
+                                        using (MySqlCommand command = new MySqlCommand(query, _conn.connection))
+                                        {
+                                            command.Parameters.AddWithValue("@columnW", columnW);
+                                            command.Parameters.AddWithValue("@iload", iload);
+
+                                            using (var reader = await command.ExecuteReaderAsync())
                                             {
-                                                string remarks = reader["remarks"].ToString();
-                                                worksheet.Cells[row, remark].Value = remarks;
-                                                Console.WriteLine($"Row {row}: Updated Column AA with remarks: {remarks}");
+                                                if (await reader.ReadAsync())
+                                                {
+                                                    string remarks = reader["remarks"].ToString();
+                                                    worksheet.Cells[row, remark].Value = remarks;
+                                                    System.Diagnostics.Debug.WriteLine($"Row {row} App {columnW} iload {iload}: Updated Column AA with remarks: {remarks}");
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
+                            else if (typeofvariance == "gcash")
+                            {
+                                string clmAction = worksheet.Cells[row, action].Text;
+                                if (clmAction == "Refund to Customer" || clmAction == "Load Reversal or Retry Payment Charging")
+                                {
+                                    string clmAppTrans = worksheet.Cells[row, app].Text; // AF column is the 32nd column
+                                    string[] splitValues = clmAppTrans.Split('|');
+                                    if (splitValues.Length >= 0)
+                                    {
+                                        string app = splitValues[0].Trim();                                      
+                                        string iload = splitValues[2].Trim();
+
+                                        string query;
+                                        if (app != " " || app != null)
+                                        {
+                                            query = $"SELECT remarks FROM {GlobalVar.tableName} WHERE app_transaction = @columnW";
+                                        }
+                                        else
+                                        {
+                                            query = $"SELECT remarks FROM {GlobalVar.tableName} WHERE iload = @iload";
+                                        }
+
+                                        using (MySqlCommand command = new MySqlCommand(query, _conn.connection))
+                                        {
+                                            command.Parameters.AddWithValue("@columnW", app);
+                                            command.Parameters.AddWithValue("@iload", iload);
+
+                                            using (var reader = await command.ExecuteReaderAsync())
+                                            {
+                                                if (await reader.ReadAsync())
+                                                {
+                                                    string remarks = reader["remarks"].ToString();
+                                                    worksheet.Cells[row, remark].Value = remarks;
+                                                    System.Diagnostics.Debug.WriteLine($"Row {row} App {app} iload {iload}: Updated Column AA with remarks: {remarks}");
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
                         }
+
                         package.Save();
                         GlobalVar.filepath = "";
                         await updateFileName();
@@ -249,7 +310,198 @@ namespace L2_GLA.Model
 
             return dataTable;
         }
-        public async Task importSmartDatabase(string filePath, string variancetype)
+        //public async Task importSmartDatabase(string filePath, string variancetype)
+        //{
+        //    try
+        //    {
+        //        // Read and parse the CSV file using CsvHelper.
+        //        using (var reader = new StreamReader(filePath))
+        //        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+        //        {
+        //            var records = csv.GetRecords<mydb>().ToList();
+        //            var processedIds = new HashSet<string>();
+
+        //            foreach (var record in records)
+        //            {
+        //                string selectQuery = $"SELECT id FROM {GlobalVar.tableName} " +
+        //                                     "WHERE app_transaction = @app OR iload = @iload";
+
+        //                Console.WriteLine(GlobalVar.tableName + " : " + record.app_transaction_number + " : " + record.elp_transaction_number);
+
+        //                var idsToUpdate = new List<string>();
+
+        //                using (var cmdSelect = new MySqlCommand(selectQuery, _conn.connection))
+        //                {
+        //                    cmdSelect.Parameters.AddWithValue("@app", record.app_transaction_number);
+        //                    cmdSelect.Parameters.AddWithValue("@iload", record.elp_transaction_number);
+
+        //                    try
+        //                    {
+        //                        using (var dataReader = await cmdSelect.ExecuteReaderAsync())
+        //                        {
+        //                            while (await dataReader.ReadAsync())
+        //                            {
+
+        //                                string id = dataReader.GetString(0);
+        //                                idsToUpdate.Add(id);
+
+        //                            }
+        //                        }
+        //                    }
+        //                    catch (MySqlException ex)
+        //                    {                                
+        //                        Console.WriteLine($"MySQL error (select): {ex.Message}");
+        //                        throw;
+        //                    }
+        //                }
+
+        //                foreach (var id in idsToUpdate)
+        //                {
+
+
+        //                    if (processedIds.Contains(id))
+        //                    {
+        //                        Console.WriteLine($"1st {variancetype} : {id} : {processedIds} : {record.app_transaction_number} : {record.status}");
+        //                        continue;
+        //                    }
+
+        //                    processedIds.Add(id);
+        //                    //Console.WriteLine($"Processing ID: {id}");
+        //                    Console.WriteLine($"2nd {variancetype} : {id} : {processedIds} : {record.app_transaction_number} : {record.status}");
+        //                    string newstatus = "";
+        //                    if (variancetype == "maya")
+        //                    {
+        //                        if (record.status == "ELP_SUCCESSFUL")
+        //                        {
+        //                            // iload checking
+        //                            newstatus = record.status;
+
+        //                        }
+        //                        else if (record.status != "ELP_SUCCESSFUL")
+        //                        {
+        //                            if (record.elp_transaction_number == "NULL" || record.elp_transaction_number is null)
+        //                            {
+        //                                newstatus = "Failed - for Refund";
+        //                            }
+        //                            else {
+        //                                //iload checking
+        //                                IloadElp = record.elp_transaction_number;
+
+        //                                 await iloadquery();
+        //                                 newstatus = iloadStatus;
+        //                            }
+
+        //                        }
+
+        //                    }
+        //                    else if (variancetype == "gcash")
+        //                    {
+        //                        Console.WriteLine(variancetype + " : " + record.status);
+        //                        if (record.status != "ELP_SUCCESSFUL")
+        //                        {                                    
+        //                            if (record.elp_transaction_number == "NULL" || record.elp_transaction_number is null)
+        //                            {
+        //                                using (MySqlCommand selectquery = new MySqlCommand("SELECT MERCHANT_TRANS_ID, TRANSACTION_TYPE FROM brand_synch_2.tbl_merchant where TRANSACTION_DATETIME >= @from and TRANSACTION_DATETIME <= @to and MERCHANT_TRANS_ID like @apptrans", _conn.connection))
+        //                                {
+        //                                    selectquery.Parameters.AddWithValue("@from", DatetimeModal.datefrom.ToString("yyyy-MM-dd 00:00:00"));
+        //                                    selectquery.Parameters.AddWithValue("@to", DatetimeModal.dateto.ToString("yyyy-MM-dd 23:59:59"));
+        //                                   Console.WriteLine( DatetimeModal.datefrom.ToString("yyyy-MM-dd 00:00:00"));
+        //                                    Console.WriteLine(DatetimeModal.dateto.ToString("yyyy-MM-dd 23:59:59"));
+
+        //                                    selectquery.Parameters.AddWithValue("@apptrans", "%" + record.app_transaction_number);
+        //                                    using (var readerResult = await selectquery.ExecuteReaderAsync())
+        //                                    {
+        //                                        while (await readerResult.ReadAsync())
+        //                                        {
+        //                                            string StatusType = readerResult["TRANSACTION_TYPE"].ToString();
+
+        //                                            if (StatusType == "PAYMENT")
+        //                                            {
+        //                                                newstatus = "Failed for Refund";
+        //                                            }
+        //                                            else if (StatusType == "REFUND")
+        //                                            {
+        //                                                newstatus = "Not Subject for Refund";
+        //                                            }
+        //                                            else
+        //                                            {
+        //                                                newstatus = "Need more Investigation";
+        //                                            }
+        //                                        }
+        //                                    }
+        //                                }
+        //                            }
+        //                            else
+        //                            {
+        //                                //iload checking
+        //                                IloadElp = record.elp_transaction_number;
+
+        //                                await iloadquery();
+        //                                newstatus = iloadStatus;
+        //                            }
+        //                        }
+        //                        else if (record.status == "ELP_SUCCESSFUL")
+        //                        {
+        //                            newstatus = record.status;
+        //                        }
+        //                        else
+        //                        {
+        //                            newstatus = "Not Subject for Refund";
+        //                        }
+
+        //                    }
+
+
+        //                    // Update the existing record
+        //                    string updateQuery = $"UPDATE {GlobalVar.tableName} " +
+        //                                         "SET `app_transaction` = @app, `iload` = @iload, `dbStatus` = @status, `remarks` = @remarks " +
+        //                                         "WHERE `id` = @id ";
+
+        //                    using (var cmdUpdate = new MySqlCommand(updateQuery, _conn.connection))
+        //                    {
+        //                        cmdUpdate.Parameters.AddWithValue("@id", id);
+        //                        cmdUpdate.Parameters.AddWithValue("@app", record.app_transaction_number);
+        //                        cmdUpdate.Parameters.AddWithValue("@iload", record.elp_transaction_number);
+        //                        cmdUpdate.Parameters.AddWithValue("@status", record.status);
+        //                        cmdUpdate.Parameters.AddWithValue("@remarks", newstatus);
+
+        //                        try
+        //                        {
+        //                            await cmdUpdate.ExecuteNonQueryAsync();
+        //                        }
+        //                        catch (MySqlException ex)
+        //                        {
+        //                            // Log and rethrow the exception for the update command
+        //                            Console.WriteLine($"MySQL error (update): {ex.Message}");
+        //                            throw;
+        //                        }
+        //                    }
+
+        //                }
+        //            }
+        //        }
+        //        using (MySqlCommand updateRemarks = new MySqlCommand($"UPDATE {GlobalVar.tableName} SET remarks = 'Not Subject for Refund' WHERE app_transaction = '' or app_transaction = 'Not Found'", _conn.connection))
+        //        {
+        //            await updateRemarks.ExecuteNonQueryAsync();
+        //        }
+
+        //        await formattoquery(filePath, null);
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        // Log MySQL-specific exceptions
+        //        Console.WriteLine($"MySQL error: {ex.Message}");
+        //        System.Windows.MessageBox.Show("A database error occurred: " + ex.Message);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Log general exceptions
+        //        Console.WriteLine($"General error: {ex.Message}");
+        //        System.Windows.MessageBox.Show("An error occurred: " + ex.Message);
+        //    }
+        //}
+
+        public async Task ImportSmartDatabaseAsync(string filePath, string variancetype)
         {
             try
             {
@@ -258,139 +510,31 @@ namespace L2_GLA.Model
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
                     var records = csv.GetRecords<mydb>().ToList();
-                    var processedIds = new HashSet<string>(); // Track processed IDs to avoid duplicates
-
+                    var processedIds = new HashSet<string>();
+               
                     foreach (var record in records)
                     {
-                        string selectQuery = $"SELECT id FROM {table} " +
-                                             "WHERE app_transaction = @app OR iload = @iload";
-
-                        var idsToUpdate = new List<string>();
-
-                        using (var cmdSelect = new MySqlCommand(selectQuery, _conn.connection))
-                        {
-                            cmdSelect.Parameters.AddWithValue("@app", record.app_transaction_number);
-                            cmdSelect.Parameters.AddWithValue("@iload", record.elp_transaction_number);
-
-                            try
-                            {
-                                using (var dataReader = await cmdSelect.ExecuteReaderAsync())
-                                {
-                                    while (await dataReader.ReadAsync())
-                                    {
-                                        string id = dataReader.GetString(0);
-                                        idsToUpdate.Add(id);
-                                    }
-                                }
-                            }
-                            catch (MySqlException ex)
-                            {
-                                // Log and rethrow the exception for the select command
-                                Console.WriteLine($"MySQL error (select): {ex.Message}");
-                                throw;
-                            }
-                        }
+                        var idsToUpdate = await GetIdsToUpdate(record);
 
                         foreach (var id in idsToUpdate)
                         {
                             if (processedIds.Contains(id))
                             {
-                                //Console.WriteLine($"Duplicate ID skipped: {id}");
-                                continue; // Skip already processed IDs
+                                continue;
                             }
 
                             processedIds.Add(id);
-                            //Console.WriteLine($"Processing ID: {id}");
-                            string newstatus = "";
-                            if (variancetype == "maya")
-                            {
-                                if (record.status != "ELP_SUCCESSFUL")
-                                {
+                            string newstatus = await GetNewStatusAsync(record, variancetype);
 
-
-                                    //newstatus = "Failed for Refund";
-                                }
-                                else if (record.status == "ELP_SUCCESSFUL")
-                                {
-                                    newstatus = record.status;
-                                }
-                                else
-                                {
-                                    newstatus = "Not Subject for Refund";
-                                }
-                            }
-                            else
-                            {
-                                if (record.status != "ELP_SUCCESSFUL")
-                                {
-                                    using (MySqlCommand selectquery = new MySqlCommand("SELECT * FROM brand_synch_2.tbl_merchant where TRANSACTION_DATETIME >= @created_at and MERCHANT_TRANS_ID like @apptrans", _conn.connection))
-                                    {
-                                        DateTime createdAtDateTime;
-                                        if (DateTime.TryParseExact(record.created_at, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out createdAtDateTime))
-                                        {
-                                            selectquery.Parameters.AddWithValue("@created_at", createdAtDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                                            selectquery.Parameters.AddWithValue("@apptrans", "%" + record.app_transaction_number);
-                                            using (var readerResult = await selectquery.ExecuteReaderAsync())
-                                            {
-
-                                            }
-                                        }
-                                        else
-                                        {
-                                            throw new FormatException("Invalid date format. Expected MM/dd/yyyy.");
-                                        }
-
-                                    }
-
-                                    newstatus = "Failed for Refund";
-                                }
-                                else if (record.status == "ELP_SUCCESSFUL")
-                                {
-                                    newstatus = record.status;
-                                }
-                                else
-                                {
-                                    newstatus = "Not Subject for Refund";
-                                }
-
-                            }
-
-
-                            // Update the existing record
-                            string updateQuery = "UPDATE `brand_synch_2`.`tbl_variance_maya` " +
-                                                 "SET `app_transaction` = @app, `iload` = @iload, `dbStatus` = @status, `remarks` = @remarks " +
-                                                 "WHERE `id` = @id ";
-
-                            using (var cmdUpdate = new MySqlCommand(updateQuery, _conn.connection))
-                            {
-                                cmdUpdate.Parameters.AddWithValue("@id", id);
-                                cmdUpdate.Parameters.AddWithValue("@app", record.app_transaction_number);
-                                cmdUpdate.Parameters.AddWithValue("@iload", record.elp_transaction_number);
-                                cmdUpdate.Parameters.AddWithValue("@status", record.status);
-                                cmdUpdate.Parameters.AddWithValue("@remarks", newstatus);
-
-                                try
-                                {
-                                    await cmdUpdate.ExecuteNonQueryAsync();
-                                }
-                                catch (MySqlException ex)
-                                {
-                                    // Log and rethrow the exception for the update command
-                                    Console.WriteLine($"MySQL error (update): {ex.Message}");
-                                    throw;
-                                }
-                            }
+                            await UpdateDatabaseRecord(id, record, newstatus);
                         }
                     }
+
+                    // Update remarks for records without a specific transaction
+                    await UpdateRemarksAsync();
                 }
-                using (MySqlCommand updateRemarks = new MySqlCommand("UPDATE brand_synch_2.tbl_variance_maya SET remarks = 'Not Subject for Refund' WHERE app_transaction = 'Not Found'", _conn.connection))
-                {
-                    await updateRemarks.ExecuteNonQueryAsync();
-                }
-                //using (MySqlCommand updateRemarks = new MySqlCommand("update brand_synch_2.tbl_variance_maya set remarks = 'Failed - for Refund' where iload = 'Not Found' ", _conn.connection))
-                //{
-                //    await updateRemarks.ExecuteNonQueryAsync();
-                //}
+
+                // Additional processing
                 await formattoquery(filePath, null);
             }
             catch (MySqlException ex)
@@ -405,11 +549,124 @@ namespace L2_GLA.Model
                 Console.WriteLine($"General error: {ex.Message}");
                 System.Windows.MessageBox.Show("An error occurred: " + ex.Message);
             }
+            
         }
+
+        private async Task<List<string>> GetIdsToUpdate(mydb record)
+        {
+            var idsToUpdate = new List<string>();
+            string selectQuery = $"SELECT id FROM {GlobalVar.tableName} WHERE app_transaction = @app OR iload = @iload";
+
+            using (var cmdSelect = new MySqlCommand(selectQuery, _conn.connection))
+            {
+                cmdSelect.Parameters.AddWithValue("@app", record.app_transaction_number);
+                cmdSelect.Parameters.AddWithValue("@iload", record.elp_transaction_number);
+
+                using (var dataReader = await cmdSelect.ExecuteReaderAsync())
+                {
+                    while (await dataReader.ReadAsync())
+                    {
+                        idsToUpdate.Add(dataReader.GetString(0));
+                    }
+                }
+            }
+
+            return idsToUpdate;
+        }
+
+        private async Task<string> GetNewStatusAsync(mydb record, string variancetype)
+        {
+            string newstatus = record.status;
+
+            if (variancetype == "maya" && record.status != "ELP_SUCCESSFUL")
+            {
+                newstatus = (string.IsNullOrEmpty(record.elp_transaction_number) || record.elp_transaction_number == "NULL")
+                    ? "Failed - for Refund"
+                    : await iloadquery();
+            }
+            else if (variancetype == "gcash")
+            {
+                if (record.status != "ELP_SUCCESSFUL")
+                {
+                    if (string.IsNullOrEmpty(record.elp_transaction_number) || record.elp_transaction_number == "NULL")
+                    {
+                        newstatus = await CheckGcashStatusAsync(record);
+                    }
+                    else
+                    {
+                        newstatus = await iloadquery();
+                    }
+                }
+                else
+                {
+                    newstatus = "Not Subject for Refund";
+                }
+            }
+
+            return newstatus;
+        }
+
+
+        private async Task<string> CheckGcashStatusAsync(mydb record)
+        {
+            string newstatus = "Need more Investigation";
+
+            string selectQuery = "SELECT TRANSACTION_TYPE FROM brand_synch_2.tbl_merchant WHERE TRANSACTION_DATETIME >= @from AND TRANSACTION_DATETIME <= @to AND MERCHANT_TRANS_ID LIKE @apptrans";
+            using (var cmdSelect = new MySqlCommand(selectQuery, _conn.connection))
+            {
+                cmdSelect.Parameters.AddWithValue("@from", DatetimeModal.datefrom.ToString("yyyy-MM-dd 00:00:00"));
+                cmdSelect.Parameters.AddWithValue("@to", DatetimeModal.dateto.ToString("yyyy-MM-dd 23:59:59"));
+                cmdSelect.Parameters.AddWithValue("@apptrans", "%" + record.app_transaction_number);
+
+                using (var reader = await cmdSelect.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        string statusType = reader["TRANSACTION_TYPE"].ToString();
+                        if (statusType == "PAYMENT")
+                        {
+                            newstatus = "Failed for Refund";
+                        }
+                        else if (statusType == "REFUND")
+                        {
+                            newstatus = "Not Subject for Refund";
+                        }
+                    }
+                }
+            }
+
+            return newstatus;
+        }
+
+        private async Task UpdateDatabaseRecord(string id, mydb record, string newstatus)
+        {
+            string updateQuery = $"UPDATE {GlobalVar.tableName} SET app_transaction = @app, iload = @iload, dbStatus = @status, remarks = @remarks WHERE id = @id";
+
+            using (var cmdUpdate = new MySqlCommand(updateQuery, _conn.connection))
+            {
+                cmdUpdate.Parameters.AddWithValue("@id", id);
+                cmdUpdate.Parameters.AddWithValue("@app", record.app_transaction_number);
+                cmdUpdate.Parameters.AddWithValue("@iload", record.elp_transaction_number);
+                cmdUpdate.Parameters.AddWithValue("@status", record.status);
+                cmdUpdate.Parameters.AddWithValue("@remarks", newstatus);
+
+                await cmdUpdate.ExecuteNonQueryAsync();
+            }
+        }
+
+        private async Task UpdateRemarksAsync()
+        {
+            string updateQuery = $"UPDATE {GlobalVar.tableName} SET remarks = 'Not Subject for Refund' WHERE app_transaction = '' OR app_transaction = 'Not Found'";
+            using (var cmdUpdate = new MySqlCommand(updateQuery, _conn.connection))
+            {
+                await cmdUpdate.ExecuteNonQueryAsync();
+            }
+        }
+
 
         //public async Task iloadquery()
         //{
-        //    string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=t_amagarang;Password=angelALODIA@@12";
+        //    string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=T_HMBORJA;Password=T_Hmborja_123";
 
         //    using (OracleConnection connection = new OracleConnection(connectionString))
         //    {
@@ -421,43 +678,45 @@ namespace L2_GLA.Model
         //                     " AS \"CHANNEL\", NVL(SUBSTR(evc_rrn, 4), txn_rrn) AS \"REFERENCE_NUMBER\" FROM oltp_eload_user.rtl_txn_logs lg WHERE txn_end BETWEEN to_timestamp(:start_timestamp, 'YYYYMMDDHH24MISS.FF6')" +
         //                     " AND to_timestamp(:end_timestamp, 'YYYYMMDDHH24MISS.FF6') AND SUBSTR(evc_rrn, 4) in (:elp)", connection))
         //            {
-        //                // Format the dateTimePicker1 value
-        //                //string formattedDateTime = dtpto.Value.ToString("yyyyMMdd") + "000000.000000";
-        //                //cmd.Parameters.Add(":start_timestamp", OracleDbType.Varchar2).Value = formattedDateTime;
-        //                ////    label3.Text = formattedDateTime;
-        //                //formattedDateTime = dtpto.Value.AddDays(2).ToString("yyyyMMdd") + "235959.999999";
-        //                //cmd.Parameters.Add(":end_timestamp", OracleDbType.Varchar2).Value = formattedDateTime;
-        //                ////  label4.Text = formattedDateTime;
+        //                DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
+        //                DateTime dateto = DatetimeModal.dateto;
+        //                //Format the dateTimePicker1 value
+        //                if (datefrom != default(DateTime) && dateto != default(DateTime))
+        //                {
+        //                    string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
+        //                    string formattedDateTo = dateto.ToString("yyyyMMdd") + "235959.999999"; // End of the day after adding 2 days  
+        //                    cmd.Parameters.Add(":start_timestamp", OracleDbType.Varchar2).Value = formattedDateFrom;
+        //                    cmd.Parameters.Add(":end_timestamp", OracleDbType.Varchar2).Value = formattedDateTo;
 
-        //                //cmd.Parameters.Add(":elp", OracleDbType.Varchar2).Value = elp;
-        //                //using (OracleDataReader Reader = cmd.ExecuteReader())
-        //                //{
-        //                //    while (Reader.Read())
-        //                //    {
-        //                //        //     label5.Text = Reader["STATUS"].ToString();
-        //                //        using (MySqlCommand update_query = new MySqlCommand("UPDATE `brand_synch_2`.`investigation` SET `iload` = @status , `Remarks` = @remarks  WHERE REPLACE(investigation.ELP_Reference_Number, ' | success', '') = @elp", conn.connection))
-        //                //        {
-        //                //            update_query.Parameters.AddWithValue("@status", Reader["STATUS"]);
-        //                //            if (Reader["STATUS"].ToString() == "SUCCESSFUL")
-        //                //            {
-        //                //                update_query.Parameters.AddWithValue("@remarks", "Not Subject for Refund");
-        //                //            }
-        //                //            else
-        //                //            {
-        //                //                update_query.Parameters.AddWithValue("@remarks", "Failed - For Refund");
-        //                //            }
-        //                //            update_query.Parameters.AddWithValue("@elp", Reader["REFERENCE_NUMBER"]);
-        //                //            update_query.ExecuteNonQuery();
-        //                //        }
-        //                //    }
+        //                }
+        //                else
+        //                {
+        //                    System.Diagnostics.Debug.WriteLine("Date values are not initialized correctly.");
+        //                }
 
-        //                //}
 
+        //                cmd.Parameters.Add(":elp", OracleDbType.Varchar2).Value = IloadElp;
+        //                using (OracleDataReader Reader = cmd.ExecuteReader())
+        //                {
+        //                    while (Reader.Read())
+        //                    {                               
+        //                            if (Reader["STATUS"].ToString() == "SUCCESSFUL")
+        //                            {
+        //                                iloadStatus = "Not Subject for Refund";
+        //                            }
+        //                            else
+        //                            {
+        //                                iloadStatus = "Failed - For Refund";
+        //                            }                                   
+        //                        }
+
+        //                }
+        //               // System.Windows.MessageBox.Show("successfully." + iloadStatus + " : " + IloadElp + "\n" + datefrom + " " + dateto);
         //            }
 
         //            connection.Close();
-        //            System.Windows.MessageBox.Show("successfully.");
-                    
+
+
         //        }
         //        catch (Exception ex)
         //        {
@@ -466,11 +725,69 @@ namespace L2_GLA.Model
         //    }
         //}
 
+        public async Task<string> iloadquery()
+        {
+            string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=T_HMBORJA;Password=T_Hmborja_123";
+            string iloadStatus = "Need more Investigation"; // Default status
+
+            using (OracleConnection connection = new OracleConnection(connectionString))
+            {
+                try
+                {
+                    await connection.OpenAsync();
+                    using (OracleCommand cmd = new OracleCommand("SELECT DECODE(voidcode, '0000', 'SUCCESSFUL', 'FAILED') AS \"STATUS\", (SELECT de.denom_name FROM oltp_eload_user.EDB_DENOMS_v de WHERE de.plancode = lg.plancode)" +
+                             " AS \"DENOM_NAME\", (SELECT cf.val1 FROM oltp_eload_user.EDB_APPLICATION_CONFIGS_v cf WHERE cf.application_code = 'EDB' AND cf.name = 'System Channel ID' AND cf.key = NVL(SUBSTR(NULL, 1, 3), SUBSTR(txn_rrn, 1, 3)))" +
+                             " AS \"CHANNEL\", NVL(SUBSTR(evc_rrn, 4), txn_rrn) AS \"REFERENCE_NUMBER\" FROM oltp_eload_user.rtl_txn_logs lg WHERE txn_end BETWEEN to_timestamp(:start_timestamp, 'YYYYMMDDHH24MISS.FF6')" +
+                             " AND to_timestamp(:end_timestamp, 'YYYYMMDDHH24MISS.FF6') AND SUBSTR(evc_rrn, 4) in (:elp)", connection))
+                    {
+                        DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
+                        DateTime dateto = DatetimeModal.dateto;
+
+                        if (datefrom != default(DateTime) && dateto != default(DateTime))
+                        {
+                            string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
+                            string formattedDateTo = dateto.ToString("yyyyMMdd") + "235959.999999"; // End of the day  
+                            cmd.Parameters.Add(":start_timestamp", OracleDbType.Varchar2).Value = formattedDateFrom;
+                            cmd.Parameters.Add(":end_timestamp", OracleDbType.Varchar2).Value = formattedDateTo;
+                        }
+                        else
+                        {
+                            System.Diagnostics.Debug.WriteLine("Date values are not initialized correctly.");
+                        }
+
+                        cmd.Parameters.Add(":elp", OracleDbType.Varchar2).Value = IloadElp;
+                        using (DbDataReader reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                if (reader["STATUS"].ToString() == "SUCCESSFUL")
+                                {
+                                    iloadStatus = "Not Subject for Refund";
+                                }
+                                else
+                                {
+                                    iloadStatus = "Failed - For Refund";
+                                }
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show("Error: " + ex.Message);
+                    iloadStatus = "Error occurred";
+                }
+            }
+
+            return iloadStatus; // Return the status
+        }
+
+
         public async Task SaveToDatabaseAsync(string appTransactionData, string iloadData, string actionData)
         {
             try
             {               
-                string query = $"INSERT INTO {table}(`file_id`,`app_transaction`,`iload`,`action`)VALUES(@maxid, @app_transaction, @iload, @action)";
+                string query = $"INSERT INTO {GlobalVar.tableName}(`file_id`,`app_transaction`,`iload`,`action`)VALUES(@maxid, @app_transaction, @iload, @action)";
                 using (MySqlCommand cmd = new MySqlCommand(query, _conn.connection))
                 {
 

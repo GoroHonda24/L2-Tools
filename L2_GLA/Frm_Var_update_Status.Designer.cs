@@ -39,7 +39,7 @@ namespace L2_GLA
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 20);
+            this.label1.Location = new System.Drawing.Point(82, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(24, 20);
             this.label1.TabIndex = 0;
@@ -48,7 +48,7 @@ namespace L2_GLA
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(180, 94);
+            this.button1.Location = new System.Drawing.Point(240, 142);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 36);
             this.button1.TabIndex = 1;
@@ -59,7 +59,7 @@ namespace L2_GLA
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(274, 94);
+            this.button2.Location = new System.Drawing.Point(334, 142);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(88, 36);
             this.button2.TabIndex = 2;
@@ -76,7 +76,7 @@ namespace L2_GLA
             "Done",
             "Pending to NOC",
             "Pending to PayOnline"});
-            this.cbbStatus.Location = new System.Drawing.Point(133, 60);
+            this.cbbStatus.Location = new System.Drawing.Point(193, 108);
             this.cbbStatus.Name = "cbbStatus";
             this.cbbStatus.Size = new System.Drawing.Size(309, 28);
             this.cbbStatus.TabIndex = 9;
@@ -85,7 +85,7 @@ namespace L2_GLA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(638, 150);
+            this.ClientSize = new System.Drawing.Size(746, 287);
             this.ControlBox = false;
             this.Controls.Add(this.cbbStatus);
             this.Controls.Add(this.button2);

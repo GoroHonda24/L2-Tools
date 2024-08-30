@@ -14,7 +14,11 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< HEAD
         <dsig:DigestValue>YGHWhtxGM9WNLHCUzil6qJMAvFoZnRz7J7woJZecug8=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>CZTJ4gsr9N8d5+CCoPQbO+R9QuTflXJ5KlsEGs0vNiE=</dsig:DigestValue>
+>>>>>>> fa7e979 (Maya variance without iload checking)
       </hash>
     </dependentAssembly>
   </dependency>

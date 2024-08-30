@@ -349,6 +349,12 @@
     <Compile Include="myConnectionString.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Variance\DatetimeModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Variance\DatetimeModal.Designer.cs">
+      <DependentUpon>DatetimeModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Variance\gcash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -455,6 +461,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Variance\DatetimeModal.resx">
+      <DependentUpon>DatetimeModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Variance\gcash.resx">
       <DependentUpon>gcash.cs</DependentUpon>
     </EmbeddedResource>

@@ -31,6 +31,14 @@ namespace L2_GLA.Variance
 
         private async void btnImportSmartDB_Click(object sender, EventArgs e)
         {
+            //DatetimeModal ojbform = new DatetimeModal();
+            //ojbform.ShowDialog();
+
+            if(DatetimeModal.backbutton == true)
+            {
+                return;
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "CSV Files (*.csv)|*.csv";
 

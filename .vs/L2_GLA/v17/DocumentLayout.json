@@ -3,32 +3,28 @@
   "WorkspaceRootPath": "C:\\GLA\\tool\\V0.0.1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\frm_var_report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_var_report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\frm_var_report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_var_report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\model\\variance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\model\\variance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\variance\\gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\variance\\gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\frm_var_report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_var_report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\variance\\maya.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\variance\\maya.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\variance\\datetimemodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\variance\\datetimemodal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\variance\\maya.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\variance\\maya.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\frm_var_report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_var_report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\variance\\gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\variance\\gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\frm_gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,36 +50,55 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Frm_Var_Report.cs",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Var_Report.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\Frm_Var_Report.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Var_Report.cs",
-              "RelativeToolTip": "L2_GLA\\Frm_Var_Report.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAASAAAA",
+              "Title": "variance.cs",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Model\\variance.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Model\\variance.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Model\\variance.cs",
+              "RelativeToolTip": "L2_GLA\\Model\\variance.cs",
+              "ViewState": "AQIAACEDAAAAAAAAAAAUwDMDAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T06:29:17.812Z",
+              "WhenOpened": "2024-09-03T13:29:23.481Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Frm_Var_Report.cs",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Var_Report.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Frm_Var_Report.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Var_Report.cs",
+              "RelativeToolTip": "L2_GLA\\Frm_Var_Report.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAwwFIAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-03T06:29:17.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Frm_Var_Report.cs [Design]",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Var_Report.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Frm_Var_Report.cs",
               "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Var_Report.cs [Design]",
               "RelativeToolTip": "L2_GLA\\Frm_Var_Report.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T06:29:14.583Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-09-03T06:29:14.583Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Program.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Program.cs",
@@ -95,31 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DatetimeModal.cs [Design]",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\DatetimeModal.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\Variance\\DatetimeModal.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\DatetimeModal.cs [Design]",
-              "RelativeToolTip": "L2_GLA\\Variance\\DatetimeModal.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-30T09:10:24.599Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "variance.cs",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Model\\variance.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\Model\\variance.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Model\\variance.cs",
-              "RelativeToolTip": "L2_GLA\\Model\\variance.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAAA2wFgAAABGAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T16:09:31.15Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Frm_Gcash.cs",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Gcash.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Frm_Gcash.cs",
@@ -131,19 +122,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "maya.cs",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\maya.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Variance\\maya.cs",
               "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\maya.cs",
               "RelativeToolTip": "L2_GLA\\Variance\\maya.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAwwCkAAABBAAAA",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAEwCsAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-04T06:23:37.451Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "maya.cs [Design]",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\maya.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Variance\\maya.cs",
@@ -154,7 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Form1.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Form1.cs",
@@ -166,7 +157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "gcash.cs",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\gcash.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Variance\\gcash.cs",
@@ -178,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "gcash.cs [Design]",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\gcash.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Variance\\gcash.cs",

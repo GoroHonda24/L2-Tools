@@ -44,8 +44,10 @@ namespace L2_GLA.Variance
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-               // await variance.importSmartDatabase(openFileDialog.FileName, "maya");
+                // await variance.importSmartDatabase(openFileDialog.FileName, "maya");
+                await variance.IloadAccount();
                 await variance.ImportSmartDatabaseAsync(openFileDialog.FileName, "maya");
+                
                 await LoadMayaResult();
             }
         }

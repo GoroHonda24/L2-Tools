@@ -83,8 +83,10 @@ namespace L2_GLA.Variance
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-               // await variance.importSmartDatabase(openFileDialog.FileName, "gcash");
+                // await variance.importSmartDatabase(openFileDialog.FileName, "gcash");
+                await variance.IloadAccount();
                 await variance.ImportSmartDatabaseAsync(openFileDialog.FileName, "gcash");
+                
                 await LoadGcashResult();
             }
         }

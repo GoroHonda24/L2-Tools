@@ -511,7 +511,7 @@ namespace L2_GLA
             {
                 CloseActiveForm();
                 lbltitle.Text = "Postman";
-                GL frmobj = new GL();
+                API frmobj = new API();
                 frmobj.TopLevel = false;
                 frmobj.FormBorderStyle = FormBorderStyle.None;
                 frmobj.Dock = DockStyle.Fill;

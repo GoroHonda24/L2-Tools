@@ -113,6 +113,7 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.1.0\lib\net462\MySql.Data.dll</HintPath>
     </Reference>
@@ -360,6 +361,12 @@
     <Compile Include="GlobalVar.cs" />
     <Compile Include="Model\variance.cs" />
     <Compile Include="myConnectionString.cs" />
+    <Compile Include="OpenAPIs\API.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenAPIs\API.Designer.cs">
+      <DependentUpon>API.cs</DependentUpon>
+    </Compile>
     <Compile Include="OpenAPIs\GL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -471,6 +478,9 @@
     <EmbeddedResource Include="frm_Var_view.resx">
       <DependentUpon>frm_Var_view.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OpenAPIs\API.resx">
+      <DependentUpon>API.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OpenAPIs\GL.resx">
       <DependentUpon>GL.cs</DependentUpon>
     </EmbeddedResource>
@@ -501,6 +511,7 @@
       <CodeGenerator>NSwagCSharp</CodeGenerator>
     </None>
     <None Include="L2_GLA_TemporaryKey.pfx" />
+    <None Include="LICENSE" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -519,6 +530,7 @@
     <None Include="Icons\back_48.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.md" />
     <None Include="Resources\Screenshot_6.png" />
   </ItemGroup>
   <ItemGroup>

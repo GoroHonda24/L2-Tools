@@ -40,6 +40,7 @@ namespace L2_GLA
             this.btnL2 = new System.Windows.Forms.Button();
             this.btnINC = new System.Windows.Forms.Button();
             this.btnMNP = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelVariance = new System.Windows.Forms.Panel();
             this.btnIload = new System.Windows.Forms.Button();
             this.btnVarianceReport = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@ namespace L2_GLA
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelVariance.SuspendLayout();
             this.panelPayment.SuspendLayout();
@@ -240,6 +240,25 @@ namespace L2_GLA
             this.btnMNP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMNP.UseVisualStyleBackColor = true;
             this.btnMNP.Click += new System.EventHandler(this.btnMNP_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(0, 941);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(293, 50);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Postman";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panelVariance
             // 
@@ -597,24 +616,6 @@ namespace L2_GLA
             this.label2.Size = new System.Drawing.Size(306, 144);
             this.label2.TabIndex = 3;
             this.label2.Text = "Smart\r\n       Tool";
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 941);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(293, 50);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Postman";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Frm_main
             // 

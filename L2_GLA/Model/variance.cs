@@ -20,20 +20,22 @@ using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using MySqlX.XDevAPI.Relational;
 using Oracle.ManagedDataAccess.Client;
+using Microsoft.VisualBasic;
+using System.Linq.Expressions;
 
 namespace L2_GLA.Model
 {
     internal class variance
     {
         private readonly DBconnect _conn;
-        private int count = 0;
+       // private int count = 0;
         private int action = 0, app = 0, iload = 0, remark = 0;
        // private string table = "";
-        List<string> appTransactionNumbers = new List<string>();
-        List<string> transStatus = new List<string>();
+        //List<string> appTransactionNumbers = new List<string>();
+        //List<string> transStatus = new List<string>();
 
 
-        string IloadElp, iloadStatus, typeofvariance="";
+        string IloadElp, typeofvariance="";
 
         public variance()
         {
@@ -95,13 +97,14 @@ namespace L2_GLA.Model
                 {
                     FileInfo fileInfo = new FileInfo(filename);
                     
-                    Console.WriteLine($"{filename} : Updating file {vartype}");
+                   // Console.WriteLine($"{filename} : Updating file {vartype}");
                     using (ExcelPackage package = new ExcelPackage(fileInfo))
                     {
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
                         if (worksheet == null)
                         {
-                            throw new Exception("Worksheet is null. Please check the Excel file.");
+                            System.Windows.MessageBox.Show("Please check the Excel file. Sheet is empty");
+                            return;
                         }
 
                         if (worksheet.Dimension == null)
@@ -123,6 +126,7 @@ namespace L2_GLA.Model
                                     string columnW = worksheet.Cells[row, app].Text; // Column W
                                     app_value.Add(columnW);
 
+                                    
                                     string columnY = worksheet.Cells[row, iload].Text; // Column Y
                                     string[] columnYParts = columnY.Split('|');
 
@@ -130,8 +134,8 @@ namespace L2_GLA.Model
                                     {
                                         string iload = columnYParts[0].Trim();
                                         iload_value.Add(iload);
-                                        await SaveToDatabaseAsync(columnW, iload, columnZ);
-                                        Console.WriteLine($"Processed row {row}: columnW = {columnW}, iload = {iload}, action = {columnZ}");
+                                        await SaveToDatabaseAsync(columnW, iload, columnZ, null);
+                                       // Console.WriteLine($"Processed row {row}: columnW = {columnW}, iload = {iload}, action = {columnZ}");
                                     }
                                 }
                             }
@@ -141,6 +145,7 @@ namespace L2_GLA.Model
                                 string clmAction = worksheet.Cells[row, action].Text;
                                 if (clmAction == "Refund to Customer" || clmAction == "Load Reversal or Retry Payment Charging")
                                 {
+                                    string refundcol = worksheet.Cells[row, iload].Text;
                                     string clmAppTrans = worksheet.Cells[row, app].Text; // AF column is the 32nd column
                                     string[] splitValues = clmAppTrans.Split('|');
                                     if (splitValues.Length >= 0)
@@ -150,8 +155,8 @@ namespace L2_GLA.Model
                                         string iload = splitValues[2].Trim();
                                         iload_value.Add(iload);
 
-                                        await SaveToDatabaseAsync(app, iload, clmAction);
-                                        Console.WriteLine($"Processed row {row}: columnW = {app}, iload = {iload}, action = {clmAction}");
+                                        await SaveToDatabaseAsync(app, iload, clmAction, refundcol);
+                                        //Console.WriteLine($"Processed row {row}: columnW = {app}, iload = {iload}, action = {clmAction}");
                                     }
                                 }
                             }
@@ -169,19 +174,21 @@ namespace L2_GLA.Model
                 else if (!string.IsNullOrEmpty(GlobalVar.filepath))
                 {
                     filename = GlobalVar.filepath;
-                    Console.WriteLine($"{filename} : Updating file {typeofvariance}");
+                    //Console.WriteLine($"{filename} : Updating file {typeofvariance}");
                     FileInfo fileInfo = new FileInfo(filename);
                     using (ExcelPackage package = new ExcelPackage(fileInfo))
                     {
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
                         if (worksheet == null)
                         {
-                            throw new Exception("Worksheet is null. Please check the Excel file.");
+                            System.Windows.MessageBox.Show("Please check the Excel file. Sheet is empty");
+                            return;
                         }
 
                         if (worksheet.Dimension == null)
                         {
-                            throw new Exception("Worksheet dimensions are null. Please check the Excel file.");
+                            System.Windows.MessageBox.Show("Please check the Excel file. Sheet is empty");
+                            return;
                         }
 
                         int rowCount = worksheet.Dimension.Rows;
@@ -222,7 +229,7 @@ namespace L2_GLA.Model
                                                 {
                                                     string remarks = reader["remarks"].ToString();
                                                     worksheet.Cells[row, remark].Value = remarks;
-                                                    System.Diagnostics.Debug.WriteLine($"Row {row} App {columnW} iload {iload}: Updated Column AA with remarks: {remarks}");
+                                                    //System.Diagnostics.Debug.WriteLine($"Row {row} App {columnW} iload {iload}: Updated Column AA with remarks: {remarks}");
                                                 }
                                             }
                                         }
@@ -240,9 +247,9 @@ namespace L2_GLA.Model
                                     {
                                         string app = splitValues[0].Trim();                                      
                                         string iload = splitValues[2].Trim();
-
+                                       // Console.WriteLine($"app : {app} iload : {iload}");
                                         string query;
-                                        if (app != " " || app != null)
+                                        if (app.Length!=0)
                                         {
                                             query = $"SELECT remarks FROM {GlobalVar.tableName} WHERE app_transaction = @columnW";
                                         }
@@ -262,7 +269,7 @@ namespace L2_GLA.Model
                                                 {
                                                     string remarks = reader["remarks"].ToString();
                                                     worksheet.Cells[row, remark].Value = remarks;
-                                                    System.Diagnostics.Debug.WriteLine($"Row {row} App {app} iload {iload}: Updated Column AA with remarks: {remarks}");
+                                                    //System.Diagnostics.Debug.WriteLine($"table : {GlobalVar.tableName} : Row {row} App {app} iload {iload}: Updated Column AA with remarks: {remarks}");
                                                 }
                                             }
                                         }
@@ -580,9 +587,26 @@ namespace L2_GLA.Model
 
             if (variancetype == "maya" && record.status != "ELP_SUCCESSFUL")
             {
-                newstatus = (string.IsNullOrEmpty(record.elp_transaction_number) || record.elp_transaction_number == "NULL")
-                    ? "Failed - for Refund"
-                    : await iloadquery();
+                
+                if (string.IsNullOrEmpty(record.elp_transaction_number) || record.elp_transaction_number == "NULL")
+                {
+                   
+                    newstatus = "Failed - For Refund";
+                }
+                else
+                {
+                    if (IloadAccountStatus == true)
+                    {
+                        IloadElp = record.elp_transaction_number;  
+                        newstatus = await IloadQueryAsync();
+                    }
+                    else
+                    {
+                        newstatus = "No Transaction Found, Need Manual Checking in iload";
+                    }
+                    
+                }
+
             }
             else if (variancetype == "gcash")
             {
@@ -594,12 +618,13 @@ namespace L2_GLA.Model
                     }
                     else
                     {
-                        newstatus = await iloadquery();
+                        IloadElp = record.elp_transaction_number;
+                        newstatus = await IloadQueryAsync();
                     }
                 }
                 else
                 {
-                    newstatus = "Not Subject for Refund";
+                    newstatus =record.status;
                 }
             }
 
@@ -611,23 +636,22 @@ namespace L2_GLA.Model
         {
             string newstatus = "Need more Investigation";
 
-            string selectQuery = "SELECT TRANSACTION_TYPE FROM brand_synch_2.tbl_merchant WHERE TRANSACTION_DATETIME >= @from AND TRANSACTION_DATETIME <= @to AND MERCHANT_TRANS_ID LIKE @apptrans";
+            string selectQuery = "select refund from tbl_variance_gcash where app_transaction = @apptrans";
             using (var cmdSelect = new MySqlCommand(selectQuery, _conn.connection))
             {
-                cmdSelect.Parameters.AddWithValue("@from", DatetimeModal.datefrom.ToString("yyyy-MM-dd 00:00:00"));
-                cmdSelect.Parameters.AddWithValue("@to", DatetimeModal.dateto.ToString("yyyy-MM-dd 23:59:59"));
-                cmdSelect.Parameters.AddWithValue("@apptrans", "%" + record.app_transaction_number);
+                cmdSelect.Parameters.AddWithValue("@apptrans", record.app_transaction_number);
 
                 using (var reader = await cmdSelect.ExecuteReaderAsync())
                 {
                     while (await reader.ReadAsync())
                     {
-                        string statusType = reader["TRANSACTION_TYPE"].ToString();
-                        if (statusType == "PAYMENT")
+                        string statusType = reader["refund"].ToString();
+                        Console.WriteLine($"app : {record.app_transaction_number} Status : {statusType}");
+                        if (statusType == "Not Found")
                         {
-                            newstatus = "Failed for Refund";
+                            newstatus = "Failed - For Refund";
                         }
-                        else if (statusType == "REFUND")
+                        else if (statusType == "Success")
                         {
                             newstatus = "Not Subject for Refund";
                         }
@@ -662,7 +686,7 @@ namespace L2_GLA.Model
                 await cmdUpdate.ExecuteNonQueryAsync();
             }
         }
-
+        #region
 
         //public async Task iloadquery()
         //{
@@ -725,74 +749,303 @@ namespace L2_GLA.Model
         //    }
         //}
 
-        public async Task<string> iloadquery()
-        {
-            string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=T_HMBORJA;Password=T_Hmborja_123";
-            string iloadStatus = "Need more Investigation"; // Default status
+        //public async Task<string> iloadquery()
+        //{
+        //    string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.000)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=T_HMBORJA;Password=T_Hmborja_123";
+        //    string iloadStatus = "Need more Investigation"; // Default status
 
-            using (OracleConnection connection = new OracleConnection(connectionString))
+        //    using (OracleConnection connection = new OracleConnection(connectionString))
+        //    {
+        //        try
+        //        {
+        //            await connection.OpenAsync();
+        //            using (OracleCommand cmd = new OracleCommand("SELECT DECODE(voidcode, '0000', 'SUCCESSFUL', 'FAILED') AS \"STATUS\", (SELECT de.denom_name FROM oltp_eload_user.EDB_DENOMS_v de WHERE de.plancode = lg.plancode)" +
+        //                     " AS \"DENOM_NAME\", (SELECT cf.val1 FROM oltp_eload_user.EDB_APPLICATION_CONFIGS_v cf WHERE cf.application_code = 'EDB' AND cf.name = 'System Channel ID' AND cf.key = NVL(SUBSTR(NULL, 1, 3), SUBSTR(txn_rrn, 1, 3)))" +
+        //                     " AS \"CHANNEL\", NVL(SUBSTR(evc_rrn, 4), txn_rrn) AS \"REFERENCE_NUMBER\" FROM oltp_eload_user.rtl_txn_logs lg WHERE txn_end BETWEEN to_timestamp(:start_timestamp, 'YYYYMMDDHH24MISS.FF6')" +
+        //                     " AND to_timestamp(:end_timestamp, 'YYYYMMDDHH24MISS.FF6') AND SUBSTR(evc_rrn, 4) in (:elp)", connection))
+        //            {
+        //                DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
+        //                DateTime dateto = DatetimeModal.dateto;
+
+        //                if (datefrom != default(DateTime) && dateto != default(DateTime))
+        //                {
+        //                    string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
+        //                    string formattedDateTo = dateto.ToString("yyyyMMdd") + "235959.999999"; // End of the day  
+        //                    cmd.Parameters.Add(":start_timestamp", OracleDbType.Varchar2).Value = formattedDateFrom;
+        //                    cmd.Parameters.Add(":end_timestamp", OracleDbType.Varchar2).Value = formattedDateTo;
+        //                }
+        //                else
+        //                {
+        //                    System.Diagnostics.Debug.WriteLine("Date values are not initialized correctly.");
+        //                }
+
+        //                cmd.Parameters.Add(":elp", OracleDbType.Varchar2).Value = IloadElp;
+        //                using (DbDataReader reader = await cmd.ExecuteReaderAsync())
+        //                {
+        //                    while (await reader.ReadAsync())
+        //                    {
+        //                        if (reader["STATUS"].ToString() == "SUCCESSFUL")
+        //                        {
+        //                            iloadStatus = "Not Subject for Refund";
+        //                        }
+        //                        else
+        //                        {
+        //                            iloadStatus = "Failed - For Refund";
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            System.Windows.MessageBox.Show("Error: " + ex.Message);
+        //            iloadStatus = "Error occurred";
+        //        }
+        //    }
+
+        //    return iloadStatus; // Return the status
+        //}
+
+        //public async Task<string> IloadQuery()
+        //{
+        //    string iloadStatus = "No Transaction Found, Need Manual Checking in iload";
+
+        //    for (int i = 0; i<=iloaduser.Count; i++)
+        //    {
+        //        string IloadUser = iloaduser[i];
+        //        string IloadPass = iloadpass[i];
+        //        string connectionString = $"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id={IloadUser};Password={IloadPass}";
+        //        bool connectionSuccessful = false;
+
+        //        while (!connectionSuccessful)
+        //        {
+
+        //            using (OracleConnection connection = new OracleConnection(connectionString))
+        //            {
+        //                try
+        //                {
+        //                    await connection.OpenAsync();
+        //                    connectionSuccessful = true; // Connection succeeded, exit the loop
+        //                    using (OracleCommand cmd = new OracleCommand("SELECT DECODE(voidcode, '0000', 'SUCCESSFUL', 'FAILED') AS \"STATUS\", (SELECT de.denom_name FROM oltp_eload_user.EDB_DENOMS_v de WHERE de.plancode = lg.plancode)" +
+        //                        " AS \"DENOM_NAME\", (SELECT cf.val1 FROM oltp_eload_user.EDB_APPLICATION_CONFIGS_v cf WHERE cf.application_code = 'EDB' AND cf.name = 'System Channel ID' AND cf.key = NVL(SUBSTR(NULL, 1, 3), SUBSTR(txn_rrn, 1, 3)))" +
+        //                        " AS \"CHANNEL\", NVL(SUBSTR(evc_rrn, 4), txn_rrn) AS \"REFERENCE_NUMBER\" FROM oltp_eload_user.rtl_txn_logs lg WHERE txn_end BETWEEN to_timestamp(:start_timestamp, 'YYYYMMDDHH24MISS.FF6')" +
+        //                        " AND to_timestamp(:end_timestamp, 'YYYYMMDDHH24MISS.FF6') AND SUBSTR(evc_rrn, 4) in (:elp)", connection))
+        //                    {
+        //                        DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
+        //                        DateTime dateto = DatetimeModal.dateto;
+
+        //                        if (datefrom != default(DateTime) && dateto != default(DateTime))
+        //                        {
+        //                            string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
+        //                            string formattedDateTo = dateto.ToString("yyyyMMdd") + "235959.999999"; // End of the day  
+        //                            cmd.Parameters.Add(":start_timestamp", OracleDbType.Varchar2).Value = formattedDateFrom;
+        //                            cmd.Parameters.Add(":end_timestamp", OracleDbType.Varchar2).Value = formattedDateTo;
+        //                        }
+        //                        else
+        //                        {
+        //                            System.Diagnostics.Debug.WriteLine("Date values are not initialized correctly.");
+        //                        }
+
+        //                        cmd.Parameters.Add(":elp", OracleDbType.Varchar2).Value = IloadElp;
+        //                        using (DbDataReader reader = await cmd.ExecuteReaderAsync())
+        //                        {
+        //                            while (await reader.ReadAsync())
+        //                            {
+        //                                if (reader["STATUS"].ToString() == "SUCCESSFUL")
+        //                                {
+        //                                    iloadStatus = "Not Subject for Refund";
+        //                                }
+        //                                else if (reader["STATUS"].ToString() == "FAILED")
+        //                                {
+        //                                    iloadStatus = "Failed - For Refund";
+        //                                }
+        //                                else
+        //                                {
+        //                                    iloadStatus = "No Transaction Found, Need Manual Checking in iload";
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    System.Windows.MessageBox.Show("Error: " + ex.Message);
+
+        //                        iloadStatus = "Error occurred and user cancelled";
+        //                        return iloadStatus; // User cancelled
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return iloadStatus; // Return the status
+        //}
+        #endregion
+
+       private List<string> iloaduser = new List<string>();
+       private List<string> iloadpass = new List<string>();
+       private bool IloadAccountStatus = true;
+        public async Task IloadAccount()
+        {
+            using (MySqlCommand cmdLoad = new MySqlCommand("SELECT * FROM brand_synch_2.tbl_variance_iload_account",_conn.connection))
             {
+                using (var Reader = await cmdLoad.ExecuteReaderAsync())
+                {
+                    while (Reader.Read())
+                    {
+                        iloaduser.Add(Reader.GetString(1));
+                        iloadpass.Add(Reader.GetString(2));
+
+                    }
+                }
+            }
+        }
+
+        private async Task<OracleConnection> GetWorkingConnectionAsync()
+        {
+            
+            OracleConnection workingConnection = null;
+            int maxAttempts = 3; // Limit attempts to 3
+            int attemptCount = 0;
+
+            for (int i = 0; i < iloaduser.Count && attemptCount < maxAttempts; i++) // Limit the loop to maxAttempts
+            {
+                string IloadUser = iloaduser[i];
+                string IloadPass = iloadpass[i];
+                string connectionString = $"Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id={IloadUser};Password={IloadPass}";
+
                 try
                 {
-                    await connection.OpenAsync();
-                    using (OracleCommand cmd = new OracleCommand("SELECT DECODE(voidcode, '0000', 'SUCCESSFUL', 'FAILED') AS \"STATUS\", (SELECT de.denom_name FROM oltp_eload_user.EDB_DENOMS_v de WHERE de.plancode = lg.plancode)" +
+                    workingConnection = new OracleConnection(connectionString);
+                    await workingConnection.OpenAsync(); // Try to open the connection
+
+                    // If connection is successful, return the working connection
+                    System.Diagnostics.Debug.WriteLine($"Connection successful for {IloadUser}");
+                    IloadAccountStatus = true;
+                    return workingConnection;  // Exit the loop and return the successful connection
+                }
+                catch (Exception ex)
+                {
+                    attemptCount++; // Increment the attempt count
+                    System.Diagnostics.Debug.WriteLine($"Connection failed for {IloadUser}: {ex.Message}");
+                    System.Diagnostics.Debug.WriteLine($"Attempts: {attemptCount}/{maxAttempts}");
+
+                    // Continue to the next account if connection fails
+                }
+            }
+
+            // If no connection was successful, return null
+            System.Diagnostics.Debug.WriteLine("Reached maximum number of attempts (3). Stopping loop.");
+            IloadAccountStatus = false;
+            return null;
+        }
+
+
+        // Main function to execute IloadQuery with a successful connection
+        public async Task<string> IloadQueryAsync()
+        {
+            
+            string iloadStatus = "No Transaction Found, Need Manual Checking in iload";
+
+            // First, try to establish a working connection
+            OracleConnection connection = await GetWorkingConnectionAsync();
+
+            if (connection == null)
+            {
+                // No working connection was found, return the default status
+                return iloadStatus;
+            }
+
+            // If we have a working connection, proceed with the query
+            try
+            {
+               
+                using (OracleCommand cmd = new OracleCommand("SELECT DECODE(voidcode, '0000', 'SUCCESSFUL', 'FAILED') AS \"STATUS\", (SELECT de.denom_name FROM oltp_eload_user.EDB_DENOMS_v de WHERE de.plancode = lg.plancode)" +
                              " AS \"DENOM_NAME\", (SELECT cf.val1 FROM oltp_eload_user.EDB_APPLICATION_CONFIGS_v cf WHERE cf.application_code = 'EDB' AND cf.name = 'System Channel ID' AND cf.key = NVL(SUBSTR(NULL, 1, 3), SUBSTR(txn_rrn, 1, 3)))" +
                              " AS \"CHANNEL\", NVL(SUBSTR(evc_rrn, 4), txn_rrn) AS \"REFERENCE_NUMBER\" FROM oltp_eload_user.rtl_txn_logs lg WHERE txn_end BETWEEN to_timestamp(:start_timestamp, 'YYYYMMDDHH24MISS.FF6')" +
                              " AND to_timestamp(:end_timestamp, 'YYYYMMDDHH24MISS.FF6') AND SUBSTR(evc_rrn, 4) in (:elp)", connection))
+                {
+                    DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
+                    DateTime dateto = DatetimeModal.dateto;
+                    //Format the dateTimePicker1 value
+                    if (datefrom != default(DateTime) && dateto != default(DateTime))
                     {
-                        DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
-                        DateTime dateto = DatetimeModal.dateto;
+                        string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
+                        string formattedDateTo = dateto.ToString("yyyyMMdd") + "235959.999999"; // End of the day after adding 2 days  
+                        cmd.Parameters.Add(":start_timestamp", OracleDbType.Varchar2).Value = formattedDateFrom;
+                        cmd.Parameters.Add(":end_timestamp", OracleDbType.Varchar2).Value = formattedDateTo;
 
-                        if (datefrom != default(DateTime) && dateto != default(DateTime))
-                        {
-                            string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
-                            string formattedDateTo = dateto.ToString("yyyyMMdd") + "235959.999999"; // End of the day  
-                            cmd.Parameters.Add(":start_timestamp", OracleDbType.Varchar2).Value = formattedDateFrom;
-                            cmd.Parameters.Add(":end_timestamp", OracleDbType.Varchar2).Value = formattedDateTo;
-                        }
-                        else
-                        {
-                            System.Diagnostics.Debug.WriteLine("Date values are not initialized correctly.");
-                        }
+                    }
+                    
 
-                        cmd.Parameters.Add(":elp", OracleDbType.Varchar2).Value = IloadElp;
-                        using (DbDataReader reader = await cmd.ExecuteReaderAsync())
+
+                    cmd.Parameters.Add(":elp", OracleDbType.Varchar2).Value = IloadElp;
+                    using (DbDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        while (await reader.ReadAsync())
                         {
-                            while (await reader.ReadAsync())
+                            if (reader["STATUS"].ToString() == "SUCCESSFUL")
                             {
-                                if (reader["STATUS"].ToString() == "SUCCESSFUL")
-                                {
-                                    iloadStatus = "Not Subject for Refund";
-                                }
-                                else
-                                {
-                                    iloadStatus = "Failed - For Refund";
-                                }
+                                iloadStatus = "Not Subject for Refund";
+                            }
+                            else if (reader["STATUS"].ToString() == "FAILED")
+                            {
+                                iloadStatus = "Failed - For Refund";
+                            }
+                            else
+                            {
+                                iloadStatus = "No Transaction Found, Need Manual Checking in iload";
                             }
                         }
                     }
                 }
-                catch (Exception ex)
+            }
+            catch (Exception ex)
+            {
+                
+                iloadStatus = $"Error occurred during query execution. \n {ex.Message} \n {ex.ToString()}";
+            }
+            finally
+            {
+                // Close the connection
+                if (connection != null && connection.State == System.Data.ConnectionState.Open)
                 {
-                    System.Windows.MessageBox.Show("Error: " + ex.Message);
-                    iloadStatus = "Error occurred";
+                    connection.Close(); // Use synchronous Close() method
+                    connection.Dispose(); // Dispose of the connection after closing
                 }
             }
 
-            return iloadStatus; // Return the status
+
+            return iloadStatus;
+        }
+
+        private Tuple<string, string> PromptForCredentials()
+        {
+            // Prompt user for new username and password
+            // This is just an example using a simple input dialog
+            var userNameInput = Microsoft.VisualBasic.Interaction.InputBox("Enter new User ID:", "User ID", "");
+            var passwordInput = Microsoft.VisualBasic.Interaction.InputBox("Enter new Password:", "Password", "");
+
+            if (string.IsNullOrEmpty(userNameInput) || string.IsNullOrEmpty(passwordInput))
+            {
+                return null; // User cancelled or did not provide input
+            }
+
+            return new Tuple<string, string>(userNameInput, passwordInput);
         }
 
 
-        public async Task SaveToDatabaseAsync(string appTransactionData, string iloadData, string actionData)
+        public async Task SaveToDatabaseAsync(string appTransactionData, string iloadData, string actionData, string refundData)
         {
             try
-            {               
-                string query = $"INSERT INTO {GlobalVar.tableName}(`file_id`,`app_transaction`,`iload`,`action`)VALUES(@maxid, @app_transaction, @iload, @action)";
+            {   
+
+                string query = $"INSERT INTO {GlobalVar.tableName}(`file_id`,`app_transaction`,`refund`,`iload`,`action`)VALUES(@maxid, @app_transaction, @refund, @iload, @action)";
                 using (MySqlCommand cmd = new MySqlCommand(query, _conn.connection))
                 {
 
                     cmd.Parameters.AddWithValue("@maxid", GlobalVar.maxID);
                     cmd.Parameters.AddWithValue("@app_transaction", appTransactionData);
+                    cmd.Parameters.AddWithValue("@refund", refundData);
                     cmd.Parameters.AddWithValue("@iload", iloadData);
                     cmd.Parameters.AddWithValue("@action", actionData);
                     int rowsAffected = await cmd.ExecuteNonQueryAsync();

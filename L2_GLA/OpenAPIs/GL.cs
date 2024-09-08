@@ -44,50 +44,64 @@ namespace L2_GLA.OpenAPIs
         private async void button1_Click(object sender, EventArgs e)
         {
             // Set up the API base URL and endpoint
-            string baseUrl = "https://app1.smart.com.ph";
-            string endpoint = "/api/v2/get-brand";
+            string baseUrl = "https://app1.smart.com.ph/api/v2/get-brand";
             string phoneNumber = textBox1.Text.Trim(); // This should be dynamic or user input
+
+            //Validate phone number format
+            if (phoneNumber.StartsWith("63"))
+            {
+                // Phone number already starts with "63", do nothing
+            }
+            else if (phoneNumber.StartsWith("0"))
+            {
+                // Replace leading "0" with "63"
+                phoneNumber = "63" + phoneNumber.Substring(1);
+            }
+            else
+            {
+                MessageBox.Show("Phone number is invalid");
+                return; // Exit the method if the phone number is invalid
+            }
+
 
             // Set up tokens from your environment file
             string token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6IjIwOTUyYzYwLWZmMmUtNDJjNC1iZWExLWJiMWJkZjA0MzQyNSJ9.eyJqdGkiOiIyMDk1MmM2MC1mZjJlLTQyYzQtYmVhMS1iYjFiZGYwNDM0MjUiLCJpYXQiOjE2MjQwMjE1NzEsIm5iZiI6MTYyNDAyMTU3MSwiZXhwIjoxNjI0MTA3OTcxfQ.CyxD8pO9PggVpOgXTwR9Eio6dWvWZYkZHyHoPfpI9OE"; // Replace with actual token
             string appToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJhcHBfaWQiOiJpb3MiLCJpYXQiOjE1OTg1ODY1MjYsIm5iZiI6MTU5ODU4NjUyNiwiZXhwIjoxOTEzOTQ2NTI2fQ.xVM2s_Owt4zNWLOlllhPXcRQ4b23x6KQpqs_2NGu9zPlQ9hjOsSS6pr9Qams7jfsyMPXtik2MFvv8V_nT8oG5Q"; // Replace with actual app token
 
-            // Create a RestClient
-            var client = new RestClient(baseUrl);
-
-            // Create a RestRequest with the endpoint
-            var request = new RestRequest(endpoint, Method.Get);
-            request.AddParameter("number", phoneNumber);
-
-            // Add headers for authentication
-            request.AddHeader("Authorization", $"Bearer {token}");
-            request.AddHeader("X-Application-Token", appToken);
-
             try
             {
-                // Execute the request
-                var response = await client.ExecuteAsync(request);
-
-                if (response.IsSuccessful)
+                // Set up HttpClient
+                using (HttpClient client = new HttpClient())
                 {
-                    // Deserialize the response content into a dynamic object
-                    var responseObject = JsonConvert.DeserializeObject<dynamic>(response.Content);
-                    var brandInfoList = new List<dynamic> { responseObject.BrandInfoOutput };
+                    // Add Authorization header
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                    // Add X-Application-Token header
+                    client.DefaultRequestHeaders.Add("X-Application-Token", appToken);
 
-                    // Convert to DataTable using the provided method
-                    DataTable dataTable = ConvertToDataTable(brandInfoList);
+                    // Build the full request URI
+                    string requestUri = $"{baseUrl}?number={phoneNumber}";
 
-                    // Bind the DataTable to dataGridView2
-                    dataGridView2.DataSource = dataTable;
+                    // Make the GET request
+                    HttpResponseMessage response = await client.GetAsync(requestUri);
+                    response.EnsureSuccessStatusCode(); // Throw if not successful
+
+                    // Read the response content
+                    string responseContent = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize the response content if needed (optional)
+                    // var responseObject = JsonConvert.DeserializeObject<dynamic>(responseContent);
+
+                    // Display the raw JSON response in a TextBox (Assuming you have a textBox2 for this)
+                    txtgl.Text = responseContent;
                 }
-                else
-                {
-                    MessageBox.Show("API call failed. Status: " + response.StatusCode);
-                }
+            }
+            catch (HttpRequestException httpEx)
+            {
+                MessageBox.Show($"Request error: {httpEx.Message}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
 
             try
@@ -238,5 +252,9 @@ namespace L2_GLA.OpenAPIs
             return dataTable;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

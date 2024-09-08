@@ -28,7 +28,7 @@ namespace L2_GLA
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=t_amagarang;Password=angelALODIA@@12";
+            string connectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=10.109.183.200)(PORT=1521)))(CONNECT_DATA=(SID=vloltp11)));User Id=T_HMBORJA;Password=T_Hmborja_123";
 
             using (OracleConnection connection = new OracleConnection(connectionString))
             {
@@ -43,7 +43,7 @@ namespace L2_GLA
                         "(SELECT cf.val1 FROM oltp_eload_user.EDB_APPLICATION_CONFIGS_v cf WHERE cf.application_code = 'EDB' AND cf.name = 'System Channel ID' AND cf.key = NVL(SUBSTR(NULL, 1, 3), SUBSTR(txn_rrn, 1, 3))) AS \"CHANNEL\", " +
                         "NVL(SUBSTR(evc_rrn, 4), txn_rrn) AS \"REFERENCE_NUMBER\" " +
                         "FROM oltp_eload_user.rtl_txn_logs lg " +
-                        "WHERE txn_end BETWEEN to_timestamp(:start_timestamp, 'YYYYMMDDHH24MISS.FF6') AND to_timestamp(:end_timestamp, 'YYYYMMDDHH24MISS.FF6') ";
+                        "WHERE txn_end BETWEEN to_timestamp(:start_timestamp, 'YYYYMMDDHH24MISS.FF6') AND to_timestamp(:end_timestamp, 'YYYYMMDDHH24MISS.FF6')  ";
 
                     // Add the search term filter to the SQL query
                     if (searchTerms.Length > 0)
@@ -92,6 +92,31 @@ namespace L2_GLA
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            DatetimeModal ojbform = new DatetimeModal();
+            ojbform.ShowDialog();
+
+            // Accessing the values from the modal form  
+            DateTime datefrom = DatetimeModal.datefrom; // Ensure this is the correct reference.  
+            DateTime dateto = DatetimeModal.dateto;
+
+            // Ensure the dates are correctly set before formatting.  
+            if (datefrom != default && dateto != default)
+            {
+                string formattedDateFrom = datefrom.ToString("yyyyMMdd") + "000000.000000"; // Start of the day  
+                string formattedDateTo = dateto.ToString("yyyyMMdd") + "235959.999999"; // End of the day after adding 2 days  
+
+                // Output for debugging  
+                System.Diagnostics.Debug.WriteLine($"Formatted From: {formattedDateFrom}");
+                System.Diagnostics.Debug.WriteLine($"Formatted To: {formattedDateTo}");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Date values are not initialized correctly.");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             DatetimeModal ojbform = new DatetimeModal();
             ojbform.ShowDialog();

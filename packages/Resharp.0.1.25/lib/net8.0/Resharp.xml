@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>Resharp</name></assembly>
+<members>
+<member name="F:Resharp.ResharpOptions.DfaThreshold@">
+<summary>
+ default:10, full dfa compilation state space threshold
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.StartsetInferenceLimit@">
+<summary>
+ default:2000, dont touch this
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.AllowUnsupportedLookarounds@">
+<summary>
+ default:false, this rewrites common lookaheads such as (?=.*abc).* to .*abc_*&amp;.* but
+ past-the-end lookaheads such as `(?=.*def)a` will not have correct semantics!
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.UseExperimentalSyntax@">
+<summary>
+ default:false, enable → for implication ≡, ≢ for equivalence non-equivalence
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.UseDotnetCompatibleUnicode@">
+<summary>
+ default: true, case insensitive k includes Kelvin symbol (K), case insensitive i includes turkish I (ı) etc..
+ these cost a lot for string literal optimizations and are disabled in HighThroughput defaults
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.FindPotentialStartSizeLimit@">
+<summary>
+ default: 200, increases search-time performance for large regexes at the expense of building the engine
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.FindLookaroundPrefix@">
+<summary>
+ default: true, attempt to optimize lookaround prefixes.
+ can be expensive with unbounded lookarounds
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.MaxPrefixLength@">
+<summary>
+ default: 20, maximum string literal prefix length.
+ generally does not make much difference
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.MinimizePattern@">
+<summary>
+ default: true, attempt to make smaller alternations at the cost of initialization time
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.CanonicalizeStates@">
+<summary>
+ default: false, very expensive upfront but reduces state space through language canonicalization.
+ perhaps needs hundreds of thousands of matches to make up for the high upfront cost
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.MaxDfaCapacity@">
+<summary>
+ default: 1_000_000, maximum dfa size, symbolic DFA-s are generally very small and this limit is almost never reached
+</summary>
+</member>
+<member name="F:Resharp.ResharpOptions.InitialDfaCapacity@">
+<summary>
+ default: 2048, initial dfa size, can increase initial size to prevent dynamic array growth during match time
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.UseExperimentalSyntax(System.Boolean)">
+<summary>
+ default:false, enable → for implication ≡, ≢ for equivalence non-equivalence
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.UseDotnetCompatibleUnicode(System.Boolean)">
+<summary>
+ default: true, case insensitive k includes Kelvin symbol (K), case insensitive i includes turkish I (ı) etc..
+ these cost a lot for string literal optimizations and are disabled in HighThroughput defaults
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.StartsetInferenceLimit(System.Int32)">
+<summary>
+ default:2000, dont touch this
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.MinimizePattern(System.Boolean)">
+<summary>
+ default: true, attempt to make smaller alternations at the cost of initialization time
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.MaxPrefixLength(System.Int32)">
+<summary>
+ default: 20, maximum string literal prefix length.
+ generally does not make much difference
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.MaxDfaCapacity(System.Int32)">
+<summary>
+ default: 1_000_000, maximum dfa size, symbolic DFA-s are generally very small and this limit is almost never reached
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.InitialDfaCapacity(System.Int32)">
+<summary>
+ default: 2048, initial dfa size, can increase initial size to prevent dynamic array growth during match time
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.FindPotentialStartSizeLimit(System.Int32)">
+<summary>
+ default: 200, increases search-time performance for large regexes at the expense of building the engine
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.FindLookaroundPrefix(System.Boolean)">
+<summary>
+ default: true, attempt to optimize lookaround prefixes.
+ can be expensive with unbounded lookarounds
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.DfaThreshold(System.Int32)">
+<summary>
+ default:10, full dfa compilation state space threshold
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.CanonicalizeStates(System.Boolean)">
+<summary>
+ default: false, very expensive upfront but reduces state space through language canonicalization.
+ perhaps needs hundreds of thousands of matches to make up for the high upfront cost
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.AllowUnsupportedLookarounds(System.Boolean)">
+<summary>
+ default:false, this rewrites common lookaheads such as (?=.*abc).* to .*abc_*&amp;.* but
+ past-the-end lookaheads such as `(?=.*def)a` will not have correct semantics!
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.UseExperimentalSyntax">
+<summary>
+ default:false, enable → for implication ≡, ≢ for equivalence non-equivalence
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.UseDotnetCompatibleUnicode">
+<summary>
+ default: true, case insensitive k includes Kelvin symbol (K), case insensitive i includes turkish I (ı) etc..
+ these cost a lot for string literal optimizations and are disabled in HighThroughput defaults
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.StartsetInferenceLimit">
+<summary>
+ default:2000, dont touch this
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.MinimizePattern">
+<summary>
+ default: true, attempt to make smaller alternations at the cost of initialization time
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.MaxPrefixLength">
+<summary>
+ default: 20, maximum string literal prefix length.
+ generally does not make much difference
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.MaxDfaCapacity">
+<summary>
+ default: 1_000_000, maximum dfa size, symbolic DFA-s are generally very small and this limit is almost never reached
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.InitialDfaCapacity">
+<summary>
+ default: 2048, initial dfa size, can increase initial size to prevent dynamic array growth during match time
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.FindPotentialStartSizeLimit">
+<summary>
+ default: 200, increases search-time performance for large regexes at the expense of building the engine
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.FindLookaroundPrefix">
+<summary>
+ default: true, attempt to optimize lookaround prefixes.
+ can be expensive with unbounded lookarounds
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.DfaThreshold">
+<summary>
+ default:10, full dfa compilation state space threshold
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.CanonicalizeStates">
+<summary>
+ default: false, very expensive upfront but reduces state space through language canonicalization.
+ perhaps needs hundreds of thousands of matches to make up for the high upfront cost
+</summary>
+</member>
+<member name="P:Resharp.ResharpOptions.AllowUnsupportedLookarounds">
+<summary>
+ default:false, this rewrites common lookaheads such as (?=.*abc).* to .*abc_*&amp;.* but
+ past-the-end lookaheads such as `(?=.*def)a` will not have correct semantics!
+</summary>
+</member>
+<member name="T:Resharp.Sli">
+<summary>
+ F# compiler dev told me jit is smart enough to figure this out
+ but what about mono and nativeaot? it&apos;s there regardless
+</summary>
+</member>
+<member name="M:Resharp.RegexBuilder`1.stripSuffixes(Resharp.Types.RegexNode{`0})">
+<summary>
+ returns remaining pattern, suffix
+</summary>
+</member>
+<member name="M:Resharp.RegexBuilder`1.mkConcatChecked(System.Collections.Generic.IEnumerable{Resharp.Types.RegexNode{`0}})">
+<summary>
+ additional rewrites and checks if the pattern is supported
+</summary>
+</member>
+<member name="T:Resharp.RegexBuilder`1">
+<summary>
+ reuses nodes and ensures reference equality
+</summary>
+</member>
+<member name="M:Resharp.RegexMatcher`1.end_first(System.Byte,System.Char*,System.Byte*,System.ReadOnlySpan{System.Char},System.Int32)">
+<summary>
+ end position with DFA
+</summary>
+</member>
+<member name="M:Resharp.RegexMatcher`1.deriv_ptr(System.Int32,System.Int32@,System.Char*,System.Int32)">
+<summary>
+ returns true if reference changed
+</summary>
+</member>
+<member name="M:Resharp.RegexMatcher`1.StateIsNullable2(Resharp.Types.RegexStateFlags,Resharp.Types.LocationKind,System.Int32)">
+<summary>
+ already confirmed can be nullable
+</summary>
+</member>
+<member name="M:Resharp.RegexMatcher`1.Matches(System.ReadOnlySpan{System.Char})">
+<summary>
+ return all matches on input
+</summary>
+</member>
+<member name="M:Resharp.RegexMatcher`1.MatchSlices(System.ReadOnlySpan{System.Char})">
+<summary>
+ return just the positions of matches without allocating the result
+</summary>
+</member>
+<member name="M:Resharp.RegexMatcher`1.IsMatch(System.ReadOnlySpan{System.Char})">
+<summary>
+ todo: using Regex.FromStart is more efficient right now,
+ but requires adjusting the pattern
+</summary>
+</member>
+<member name="M:Resharp.RegexMatcher`1.GetOrCreateState(Resharp.Types.RegexNode{`0})">
+<summary>
+ initialize regex in DFA
+</summary>
+</member>
+<member name="M:Resharp.RegexMatcher`1.Count(System.ReadOnlySpan{System.Char})">
+<summary>
+ low overhead variant that just counts the number of matches
+</summary>
+</member>
+<member name="P:Resharp.Regex.Matcher">
+<summary>
+ internal regex matcher for debugging
+</summary>
+</member>
+<member name="P:Resharp.Regex.IsFullDFA">
+<summary>
+ whether the pattern was compiled to a full DFA,
+ raise ResharpOptions.DfaThreshold to precompile larger dfas
+</summary>
+</member>
+<member name="M:Resharp.Regex.StartsWith(System.ReadOnlySpan{System.Char})">
+ <summary>
+ whether the string starting from beginning is a match.
+ effectively same as 'StartsWith'
+ </summary>
+</member>
+<member name="M:Resharp.Regex.Matches(System.ReadOnlySpan{System.Char})">
+<summary>
+ finds all matches in the string
+</summary>
+</member>
+<member name="M:Resharp.Regex.MatchSlices(System.ReadOnlySpan{System.Char})">
+<summary>
+ utf-16 match with unicode support
+</summary>
+</member>
+<member name="M:Resharp.Regex.LongestEnd(System.ReadOnlySpan{System.Char})">
+ <summary>
+ finds longest valid match end with implicit \A
+ </summary>
+ <returns>longest valid match end or valuenone</returns>
+</member>
+<member name="M:Resharp.Regex.IsMatch(System.ReadOnlySpan{System.Char})">
+ <summary>
+ whether there exists a match anywhere in the string
+ </summary>
+</member>
+<member name="M:Resharp.Regex.FirstEnd(System.ReadOnlySpan{System.Char})">
+ <summary>
+ finds first valid match end with implicit \A
+ </summary>
+ <returns>first valid match end or valuenone</returns>
+</member>
+<member name="M:Resharp.Common.MatchSlice.GetText(System.ReadOnlySpan{System.Byte})">
+<summary>
+ gets UTF-8 decoded string from byte span
+</summary>
+</member>
+<member name="M:Resharp.Common.MatchSlice.GetText(System.ReadOnlySpan{System.Char})">
+<summary>
+ gets string from char span
+</summary>
+</member>
+<member name="T:Resharp.Common.ValueList`1">
+<summary>
+ memory-pooled collection
+</summary>
+</member>
+<member name="M:Resharp.Common.refEq``1(``0,``0)">
+<summary>
+ same as obj.ReferenceEquals(x, y) but checks for reference type
+</summary>
+</member>
+<member name="T:Resharp.Types.PredStartset">
+<summary>
+ collection of concrete startset chars for vectorization purposes
+</summary>
+</member>
+<member name="T:Resharp.Types.UnsupportedPatternException">
+<summary>
+ todo: WASM bug does not allow custom exceptions so this is just an alias
+</summary>
+</member>
+<member name="M:Resharp.Types.Location.createSpanFwd``1(System.ReadOnlySpan{``0})">
+<summary>
+ span left to right from position 0
+</summary>
+</member>
+<member name="M:Resharp.Types.Location.createSpanRev``1(System.ReadOnlySpan{``0})">
+<summary>
+ span right to left from end
+</summary>
+</member>
+<member name="M:Resharp.Pat.same``1(``0@,``0@)">
+<summary>
+ same pointer location
+</summary>
+</member>
+<member name="M:Resharp.Pat.|SplitTail|``1(Resharp.Types.RegexNode{``0})">
+<summary>
+ todo: allocation
+</summary>
+</member>
+<member name="M:Resharp.Pat.|NE|_|(System.Int32,System.Int32)">
+<summary>
+ not-equals pattern
+</summary>
+</member>
+<member name="M:Resharp.Pat.|LT|_|(System.Int32,System.Int32)">
+<summary>
+ lesser than pattern
+</summary>
+</member>
+<member name="M:Resharp.Pat.|GT|_|(System.Int32,System.Int32)">
+<summary>
+ greater than pattern
+</summary>
+</member>
+<member name="T:Resharp.Pat">
+<summary>
+ patterns, helpers
+</summary>
+</member>
+<member name="M:Resharp.StartsetHelpers.tryGetMintermChars``1(System.Char[],System.Text.RegularExpressions.Symbolic.ISolver{``0},Resharp.Types.PredStartset[],``0[],``0)">
+<summary>
+ None means set is too big to search
+</summary>
+</member>
+<member name="T:Resharp.Cache.MintermSearchValues`1">
+<summary>
+ pre-computed optimizations for a symbolic predicate
+</summary>
+</member>
+<member name="M:Resharp.Accelerators.trySkipToSetCharRev``1(Resharp.Types.Location{System.Char}@,Resharp.Cache.MintermSearchValues{``0})">
+<summary>
+ returns skipped range, must mark nullable range in leftmost-longest
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.MatchOverride`1">
+<summary>
+ override for trivial literal string search
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.LengthLookup`1.MatchEnd">
+<summary>
+ default match end lookup
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.LengthLookup`1.FixedLengthPrefixMatchEnd">
+<summary>
+ skip some transitions as we already know where match starts
+ e.g. hello.*world starts looking at hello|-&gt;.*end
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.LengthLookup`1.FixedLength">
+<summary>
+ skip match end lookup entirely
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.LengthLookup`1">
+<summary>
+ the default option to find the match end is to match again in reverse
+ often this is overkill and can be replaced with something simpler
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.DfaAccelerator`2">
+<summary>
+ active dfa state optimizations
+ e.g. a_*b can skip to position of &apos;b&apos; after finding &apos;a&apos;
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.InitialAccelerator`2.SearchValuesPotentialStart">
+<summary>
+ potential start prefix from searchvalues
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.InitialAccelerator`2.StringPrefixCaseIgnore">
+<summary>
+ | StringPrefixCaseIgnore of engine:System.Text.RegularExpressions.Regex * transitionNodeId:int
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.InitialAccelerator`2.StringPrefix">
+<summary>
+ ex. Twain ==&gt; (ε|Twain)
+</summary>
+</member>
+<member name="T:Resharp.Optimizations.InitialAccelerator`2">
+<summary>
+ initial prefix optimizations
+</summary>
+</member>
+<member name="M:Resharp.Optimizations.getPrefixNode``1(Resharp.Cache.RegexCache{``0},Resharp.Types.RegexNode{``0})">
+<summary>
+ strip parts irrelevant for prefix
+</summary>
+</member>
+</members>
+</doc>

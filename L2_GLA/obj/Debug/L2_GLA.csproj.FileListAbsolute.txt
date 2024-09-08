@@ -729,6 +729,7 @@ C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Frm_variance.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Frm_Var_Report.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Frm_Var_update_Status.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.frm_Var_view.resources
+C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.OpenAPIs.API.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.OpenAPIs.GL.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Properties.Resources.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Variance.DatetimeModal.resources

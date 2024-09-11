@@ -22,7 +22,7 @@ namespace L2_GLA
             //Application.Run(new Frm_Gcash());
 
            //Application.Run(new L2_GLA.Variance.maya());
-           Application.Run(new Frm_main());
+           Application.Run(new GL());
         }
     }
 }

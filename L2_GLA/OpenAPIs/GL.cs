@@ -47,7 +47,7 @@ namespace L2_GLA.OpenAPIs
             string baseUrl = "https://app1.smart.com.ph/api/v2/get-brand";
             string phoneNumber = textBox1.Text.Trim(); // This should be dynamic or user input
 
-            //Validate phone number format
+            // Validate phone number format
             if (phoneNumber.StartsWith("63"))
             {
                 // Phone number already starts with "63", do nothing
@@ -62,7 +62,6 @@ namespace L2_GLA.OpenAPIs
                 MessageBox.Show("Phone number is invalid");
                 return; // Exit the method if the phone number is invalid
             }
-
 
             // Set up tokens from your environment file
             string token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImp0aSI6IjIwOTUyYzYwLWZmMmUtNDJjNC1iZWExLWJiMWJkZjA0MzQyNSJ9.eyJqdGkiOiIyMDk1MmM2MC1mZjJlLTQyYzQtYmVhMS1iYjFiZGYwNDM0MjUiLCJpYXQiOjE2MjQwMjE1NzEsIm5iZiI6MTYyNDAyMTU3MSwiZXhwIjoxNjI0MTA3OTcxfQ.CyxD8pO9PggVpOgXTwR9Eio6dWvWZYkZHyHoPfpI9OE"; // Replace with actual token
@@ -88,11 +87,23 @@ namespace L2_GLA.OpenAPIs
                     // Read the response content
                     string responseContent = await response.Content.ReadAsStringAsync();
 
-                    // Deserialize the response content if needed (optional)
-                    // var responseObject = JsonConvert.DeserializeObject<dynamic>(responseContent);
+                    // Deserialize the response content into a dynamic object
+                    var responseObject = JsonConvert.DeserializeObject<dynamic>(responseContent);
 
-                    // Display the raw JSON response in a TextBox (Assuming you have a textBox2 for this)
-                    txtgl.Text = responseContent;
+                    // Check if responseObject contains nested data (like "attributes")
+                    if (responseObject != null && responseObject.data != null && responseObject.data.attributes != null)
+                    {
+                        // Extract the attributes section
+                        var attributes = responseObject.data.attributes;
+
+                        // Convert attributes to a DataTable and display in dataGridView2
+                        DataTable attributesTable = ConvertAttributesToDataRow(attributes);
+                        dataGridView2.DataSource = attributesTable;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No valid data found in the response.");
+                    }
                 }
             }
             catch (HttpRequestException httpEx)
@@ -123,6 +134,7 @@ namespace L2_GLA.OpenAPIs
                 {
                     await RunGetBrandInfoAsync();
                 }
+
                 Console.WriteLine(GlobalVar.rawHookData.ToString());
                 Console.WriteLine(GlobalVar.rawHookToken.ToString());
             }
@@ -130,7 +142,35 @@ namespace L2_GLA.OpenAPIs
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
+        
+    }
+        private DataTable ConvertAttributesToDataRow(dynamic attributes)
+        {
+            DataTable dataTable = new DataTable();
 
+            // Add a single row
+            DataRow row = dataTable.NewRow();
+
+            // Add columns and values for each attribute key-value pair
+            foreach (var property in attributes)
+            {
+                string key = property.Name;
+                string value = property.Value.ToString();
+
+                // Add column if it doesn't exist
+                if (!dataTable.Columns.Contains(key))
+                {
+                    dataTable.Columns.Add(key);
+                }
+
+                // Set the value in the row for the respective column
+                row[key] = value;
+            }
+
+            // Add the row to the DataTable
+            dataTable.Rows.Add(row);
+
+            return dataTable;
         }
         // Method to run GetData
         private async Task RunGetDataAsync()

@@ -55,6 +55,7 @@ namespace L2_GLA.OpenAPIs
                     Console.WriteLine($"Request URL: {url}"); // Log the URL
                     HttpResponseMessage response = await client.GetAsync(url);
                     response.EnsureSuccessStatusCode();
+                    
 
                     return await response.Content.ReadAsStringAsync();
                 }
@@ -78,21 +79,28 @@ namespace L2_GLA.OpenAPIs
                     var body = new
                     {
                         ConsumerKey = consumerKey,
-                        Data = rawHookData
+                        Data = rawHookData  // Ensure this is in the correct format expected by the API
                     };
+
                     string jsonBody = JsonConvert.SerializeObject(body);
+                    Console.WriteLine($"Request body: {jsonBody}");  // Log the request body
 
                     var request = new HttpRequestMessage(HttpMethod.Post, url)
                     {
                         Content = new StringContent(jsonBody, Encoding.UTF8, "application/json")
                     };
 
-                    // Make the request and get the response
                     HttpResponseMessage response = await client.SendAsync(request);
-                    response.EnsureSuccessStatusCode(); // This will throw if the status code is not 2xx
+                    var responseContent = await response.Content.ReadAsStringAsync();  // Capture the full response
 
-                    // Return the content of the response if successful
-                    return await response.Content.ReadAsStringAsync();
+                    // Check if response is not successful
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show($"Error: {response.StatusCode}, Content: {responseContent}");
+                        return null;
+                    }
+
+                    return responseContent;  // Token should be returned here
                 }
                 catch (HttpRequestException httpEx)
                 {
@@ -101,7 +109,6 @@ namespace L2_GLA.OpenAPIs
                 }
             }
         }
-
 
 
         // Step 4: Get Brand Info using the token and mobile number (POST request)
@@ -160,17 +167,31 @@ namespace L2_GLA.OpenAPIs
 
                 // Step 1: Search MINs and get the brand information
                 string minsResult = await SearchMinsAsync(baseUrl, mobileNumber, token, appToken);
-                textBoxAccountDetails.Text = minsResult;   
+                textBoxAccountDetails.Text = minsResult;
 
-                // Step 2: Get Data
+                // Step 1: Retrieve the data
                 string rawHookData = await GetDataAsync();
                 MessageBox.Show($"Data retrieved: {rawHookData}");
 
-                // Step 3: Get Token using the retrieved data
+                // Check if rawHookData is null or empty before proceeding
+                if (string.IsNullOrEmpty(rawHookData))
+                {
+                    MessageBox.Show("Failed to retrieve data. Cannot proceed.");
+                    return; // Stop further execution if rawHookData is invalid
+                }
+
+                // Step 2: Get the Token using the retrieved data
                 string rawHookToken = await GetTokenAsync(hookUrl, rawHookData, consumerKey);
                 MessageBox.Show($"Token retrieved: {rawHookToken}");
 
-                // Step 4: Get Brand Info using the token and mobile number
+                // Check if rawHookToken is null or empty before proceeding
+                if (string.IsNullOrEmpty(rawHookToken))
+                {
+                    MessageBox.Show("Failed to retrieve token. Cannot proceed.");
+                    return; // Stop further execution if rawHookToken is invalid
+                }
+
+                // Step 3: Get the Brand Info using the token and mobile number
                 string brandInfo = await GetBrandInfoAsync(hookUrl, mobileNumber, rawHookToken);
 
                 // Display the brand info in a TextBox or similar UI element

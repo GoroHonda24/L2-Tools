@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using L2_GLA.Variance;
 using L2_GLA.OpenAPIs;
+using L2_GLA.BrandSynch;
 
 namespace L2_GLA
 {
@@ -191,7 +192,7 @@ namespace L2_GLA
             {
                 CloseActiveForm();
                 lbltitle.Text = "INSERT MIN";
-                Frm_insert frmobj = new Frm_insert();
+                InsertBrand frmobj = new InsertBrand();
                 frmobj.TopLevel = false;
                 frmobj.FormBorderStyle = FormBorderStyle.None;
                 frmobj.Dock = DockStyle.Fill;
@@ -511,7 +512,7 @@ namespace L2_GLA
             {
                 CloseActiveForm();
                 lbltitle.Text = "Postman";
-                API frmobj = new API();
+                GL frmobj = new GL();
                 frmobj.TopLevel = false;
                 frmobj.FormBorderStyle = FormBorderStyle.None;
                 frmobj.Dock = DockStyle.Fill;

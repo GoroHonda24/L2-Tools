@@ -1,4 +1,5 @@
-﻿using L2_GLA.OpenAPIs;
+﻿using L2_GLA.BrandSynch;
+using L2_GLA.OpenAPIs;
 using L2_GLA.Variance;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace L2_GLA
             //Application.Run(new Frm_Gcash());
 
            //Application.Run(new L2_GLA.Variance.maya());
-           Application.Run(new GL());
+           Application.Run(new Frm_main());
         }
     }
 }

@@ -296,5 +296,10 @@ namespace L2_GLA.OpenAPIs
         {
 
         }
+
+        private void GL_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

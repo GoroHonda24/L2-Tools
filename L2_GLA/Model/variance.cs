@@ -554,7 +554,7 @@ namespace L2_GLA.Model
             {
                 // Log general exceptions
                 Console.WriteLine($"General error: {ex.Message}");
-                System.Windows.MessageBox.Show("An error occurred: " + ex.Message);
+                System.Windows.MessageBox.Show("An error occurred: " + ex.Message + ex.ToString());
             }
             
         }
@@ -573,7 +573,7 @@ namespace L2_GLA.Model
                 {
                     while (await dataReader.ReadAsync())
                     {
-                        idsToUpdate.Add(dataReader.GetString(0));
+                        idsToUpdate.Add(dataReader["id"].ToString());
                     }
                 }
             }
@@ -1070,7 +1070,7 @@ namespace L2_GLA.Model
                     Console.WriteLine(GlobalVar.gfile_name);
                     inserquery.Parameters.AddWithValue("@maxid", GlobalVar.maxID);
                     inserquery.Parameters.AddWithValue("@fileName", GlobalVar.gfile_name);
-                    inserquery.Parameters.AddWithValue("@var", "maya");
+                    inserquery.Parameters.AddWithValue("@var", typeofvariance);
                     inserquery.Parameters.AddWithValue("@status", "Ongoing");
                     inserquery.Parameters.AddWithValue("@by", GlobalVar.user);
                     inserquery.Parameters.AddWithValue("@created", DateTime.Now);

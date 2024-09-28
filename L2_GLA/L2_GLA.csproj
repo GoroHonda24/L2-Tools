@@ -374,6 +374,13 @@
     <Compile Include="GlobalVar.cs" />
     <Compile Include="Model\variance.cs" />
     <Compile Include="myConnectionString.cs" />
+    <Compile Include="NewForms\AppTransChecking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewForms\AppTransChecking.Designer.cs">
+      <DependentUpon>AppTransChecking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewForms\UncreditedLoad.cs" />
     <Compile Include="OpenAPIs\API.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +500,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Var_view.resx">
       <DependentUpon>frm_Var_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewForms\AppTransChecking.resx">
+      <DependentUpon>AppTransChecking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpenAPIs\API.resx">
       <DependentUpon>API.cs</DependentUpon>

@@ -748,3 +748,4 @@ C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.ComponentModel.Annotations.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\BouncyCastle.Cryptography.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Configuration.ConfigurationManager.xml
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.BrandSynch.InsertBrand.resources
+C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.NewForms.AppTransChecking.resources

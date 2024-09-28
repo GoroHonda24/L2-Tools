@@ -48,7 +48,6 @@ namespace L2_GLA
             this.btnVarianceGcash = new System.Windows.Forms.Button();
             this.btnVariance = new System.Windows.Forms.Button();
             this.panelPayment = new System.Windows.Forms.Panel();
-            this.btnPaymentMaya = new System.Windows.Forms.Button();
             this.btnPaymentGcash = new System.Windows.Forms.Button();
             this.btnPayment = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -159,7 +158,7 @@ namespace L2_GLA
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(0, 1191);
+            this.btnLogout.Location = new System.Drawing.Point(0, 1143);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnLogout.Size = new System.Drawing.Size(293, 50);
@@ -177,7 +176,7 @@ namespace L2_GLA
             this.btnCMS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCMS.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnCMS.ForeColor = System.Drawing.Color.White;
-            this.btnCMS.Location = new System.Drawing.Point(0, 1141);
+            this.btnCMS.Location = new System.Drawing.Point(0, 1093);
             this.btnCMS.Name = "btnCMS";
             this.btnCMS.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnCMS.Size = new System.Drawing.Size(293, 50);
@@ -195,7 +194,7 @@ namespace L2_GLA
             this.btnL2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnL2.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnL2.ForeColor = System.Drawing.Color.White;
-            this.btnL2.Location = new System.Drawing.Point(0, 1091);
+            this.btnL2.Location = new System.Drawing.Point(0, 1043);
             this.btnL2.Name = "btnL2";
             this.btnL2.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnL2.Size = new System.Drawing.Size(293, 50);
@@ -213,7 +212,7 @@ namespace L2_GLA
             this.btnINC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnINC.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnINC.ForeColor = System.Drawing.Color.White;
-            this.btnINC.Location = new System.Drawing.Point(0, 1041);
+            this.btnINC.Location = new System.Drawing.Point(0, 993);
             this.btnINC.Name = "btnINC";
             this.btnINC.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnINC.Size = new System.Drawing.Size(293, 50);
@@ -231,7 +230,7 @@ namespace L2_GLA
             this.btnMNP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMNP.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnMNP.ForeColor = System.Drawing.Color.White;
-            this.btnMNP.Location = new System.Drawing.Point(0, 991);
+            this.btnMNP.Location = new System.Drawing.Point(0, 943);
             this.btnMNP.Name = "btnMNP";
             this.btnMNP.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnMNP.Size = new System.Drawing.Size(293, 50);
@@ -249,7 +248,7 @@ namespace L2_GLA
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 941);
+            this.button1.Location = new System.Drawing.Point(0, 893);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.button1.Size = new System.Drawing.Size(293, 50);
@@ -267,7 +266,7 @@ namespace L2_GLA
             this.panelVariance.Controls.Add(this.btnVarianceMaya);
             this.panelVariance.Controls.Add(this.btnVarianceGcash);
             this.panelVariance.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelVariance.Location = new System.Drawing.Point(0, 744);
+            this.panelVariance.Location = new System.Drawing.Point(0, 696);
             this.panelVariance.Name = "panelVariance";
             this.panelVariance.Size = new System.Drawing.Size(293, 197);
             this.panelVariance.TabIndex = 11;
@@ -352,7 +351,7 @@ namespace L2_GLA
             this.btnVariance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVariance.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
             this.btnVariance.ForeColor = System.Drawing.Color.White;
-            this.btnVariance.Location = new System.Drawing.Point(0, 694);
+            this.btnVariance.Location = new System.Drawing.Point(0, 646);
             this.btnVariance.Name = "btnVariance";
             this.btnVariance.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.btnVariance.Size = new System.Drawing.Size(293, 50);
@@ -365,31 +364,12 @@ namespace L2_GLA
             // panelPayment
             // 
             this.panelPayment.BackColor = System.Drawing.Color.Transparent;
-            this.panelPayment.Controls.Add(this.btnPaymentMaya);
             this.panelPayment.Controls.Add(this.btnPaymentGcash);
             this.panelPayment.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelPayment.Location = new System.Drawing.Point(0, 594);
             this.panelPayment.Name = "panelPayment";
-            this.panelPayment.Size = new System.Drawing.Size(293, 100);
+            this.panelPayment.Size = new System.Drawing.Size(293, 52);
             this.panelPayment.TabIndex = 9;
-            // 
-            // btnPaymentMaya
-            // 
-            this.btnPaymentMaya.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(193)))), ((int)(((byte)(108)))));
-            this.btnPaymentMaya.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnPaymentMaya.FlatAppearance.BorderSize = 0;
-            this.btnPaymentMaya.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPaymentMaya.Font = new System.Drawing.Font("Franklin Gothic Heavy", 18.75F);
-            this.btnPaymentMaya.ForeColor = System.Drawing.Color.White;
-            this.btnPaymentMaya.Location = new System.Drawing.Point(0, 50);
-            this.btnPaymentMaya.Name = "btnPaymentMaya";
-            this.btnPaymentMaya.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
-            this.btnPaymentMaya.Size = new System.Drawing.Size(293, 50);
-            this.btnPaymentMaya.TabIndex = 5;
-            this.btnPaymentMaya.Text = "MAYA";
-            this.btnPaymentMaya.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPaymentMaya.UseVisualStyleBackColor = false;
-            this.btnPaymentMaya.Click += new System.EventHandler(this.btnPaymentMaya_Click);
             // 
             // btnPaymentGcash
             // 
@@ -665,7 +645,6 @@ namespace L2_GLA
         private System.Windows.Forms.Button btnVarianceGcash;
         private System.Windows.Forms.Button btnVariance;
         private System.Windows.Forms.Panel panelPayment;
-        private System.Windows.Forms.Button btnPaymentMaya;
         private System.Windows.Forms.Button btnPaymentGcash;
         private System.Windows.Forms.Button btnPayment;
         private System.Windows.Forms.Button btnDelete;

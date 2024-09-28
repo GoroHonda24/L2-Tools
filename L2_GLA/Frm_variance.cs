@@ -213,38 +213,6 @@ namespace L2_GLA
                         }
                     }
 
-                    //for (int i = 0; i < appTransactionNumbers.Count; i++)
-                    //{
-                    //    // Check for duplicates
-                    //    bool isDuplicate = appTransactionNumbers.Count(item => item == appTransactionNumbers[i]) > 1;
-
-                    //    if (isDuplicate)
-                    //    {
-                    //        for (int a = 0; a < status.Count; a++)
-                    //        {
-                    //            if (status[a] == "REFUND")
-                    //            {
-                    //                dgvlist.Rows[i].Cells[6].Value = "Not Subject for Refund - GCash has already process the refund with the amount of " + reader["TRANSACTION_AMOUNT"].ToString();
-                    //            }
-                    //            else
-                    //            {
-                    //                dgvlist.Rows[a].Cells[6].Value = "Not Subject for Refund";
-                    //            }
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        if (status[i] == "PAYMENT")
-                    //        {
-                    //            dgvlist.Rows[i].Cells[6].Value = "Failed - For Refund";
-                    //        }
-                    //        else
-                    //        {
-                    //            dgvlist.Rows[i].Cells[6].Value = "Not Subject for Refund";
-                    //        }
-                    //    }
-                    //}
-
                     if (rowcount == 0)
                     {
                         MessageBox.Show("Transaction not found.\r\nPlease email PayOnline for the status of this transaction", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -255,22 +223,6 @@ namespace L2_GLA
 
 
         }
-        //if (rowcount == 2)
-        //{
-
-        //    dgvlist.Rows[0].Cells[3].Value = "Not Subject for Refund";
-        //    dgvlist.Rows[1].Cells[3].Value = "Not Subject for Refund";
-
-        //}
-        //else if (Reader["TRANSACTION_TYPE"].ToString() == "PAYMENT")
-        //{
-        //    dgvlist.Rows[0].Cells[3].Value = "Failed - For Refund";
-        //}
-        //else
-        //{
-        //    dgvlist.Rows[0].Cells[3].Value = "Not Subject for Refund";
-
-        //}
         public void LOAD_FILE()
         {
             cmd = new MySqlCommand("SELECT * FROM brand_synch_2.tbl_file where file_name like 'MERCHANT%' order by id desc", conn.connection);

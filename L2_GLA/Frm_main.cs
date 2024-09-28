@@ -11,6 +11,7 @@ using System.Diagnostics;
 using L2_GLA.Variance;
 using L2_GLA.OpenAPIs;
 using L2_GLA.BrandSynch;
+using L2_GLA.NewForms;
 
 namespace L2_GLA
 {
@@ -316,7 +317,7 @@ namespace L2_GLA
             {
                 CloseActiveForm();
                 lbltitle.Text = "MERCHANT SETTLEMENT";
-                Frm_variance frmobj = new Frm_variance();
+                AppTransChecking frmobj = new AppTransChecking();
                 frmobj.TopLevel = false;
                 frmobj.FormBorderStyle = FormBorderStyle.None;
                 frmobj.Dock = DockStyle.Fill;

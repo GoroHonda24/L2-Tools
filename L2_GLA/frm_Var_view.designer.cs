@@ -35,8 +35,6 @@ namespace L2_GLA
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvlist)).BeginInit();
             this.SuspendLayout();
@@ -67,8 +65,6 @@ namespace L2_GLA
             this.Column2,
             this.Column3,
             this.Column4,
-            this.Column6,
-            this.Column1,
             this.Column7});
             this.dgvlist.Location = new System.Drawing.Point(2, 3);
             this.dgvlist.Name = "dgvlist";
@@ -97,20 +93,6 @@ namespace L2_GLA
             this.Column4.HeaderText = "DB Status";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "Splunk Status";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Iload Status";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
             // 
             // Column7
             // 
@@ -144,8 +126,6 @@ namespace L2_GLA
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }

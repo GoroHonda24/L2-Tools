@@ -59,23 +59,91 @@ namespace L2_GLA.BrandSynch
 
         private async void btnGen_Click(object sender, EventArgs e)
         {
+            List<string> modifiedNumbers = new List<string>();
             if (!ValidateInputs()) return;
 
-            string[] searchTerms = txtmin.Text.Replace("\n", "").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string inputNumbers = txtmin.Text.Trim();
+            // Split input by commas to handle multiple numbers  
+            string[] numbers = inputNumbers.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             long todayUnixTimestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+            foreach (var number in numbers)
+            {
+                string modifiedNumber;
+
+                if (!ValidateNumber(number.Trim(), out modifiedNumber))
+                {
+                    MessageBox.Show($"Please enter valid numbers (<= 10) starting with '63', '09', or '9'. Invalid entry: {number.Trim()}", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Add the modified number to the list  
+                modifiedNumbers.Add(modifiedNumber);
+            }
+
+            // Join modified numbers back with commas  
+            txtmin.Text = string.Join(",", modifiedNumbers);
 
             if (btnGen.Text == "Generate")
             {
-                await GenerateLogEntry(todayUnixTimestamp);
+                await GenerateLogEntry(todayUnixTimestamp, txtmin.Text);
             }
             else
             {
-                await ExportBulkLogs(searchTerms, todayUnixTimestamp);
+                await ExportBulkLogs(modifiedNumbers.ToArray(), todayUnixTimestamp);
             }
 
             btnGen.Enabled = false;
         }
+        private bool ValidateNumber(string input, out string modifiedNumber)
+        {
+            
+            modifiedNumber = input;
+            if (input.Length >= 13)
+            {
+                return false;
+            }
 
+            if (input.StartsWith("639"))
+            {
+                modifiedNumber  = "9" + input.Substring(3);
+            }else if (input.StartsWith("09"))
+            {
+                modifiedNumber = "9" + input.Substring(2);
+            }
+            else if (input.StartsWith("9"))
+            {
+                if (input.Length >= 11)
+                {
+                    return false;
+                }
+            }else if (input.StartsWith("638"))
+            {
+
+                modifiedNumber = "8" + input.Substring(3);
+            }
+            else if (input.StartsWith("08"))
+            {
+
+                modifiedNumber = "8" + input.Substring(2);
+            }
+            else if (input.StartsWith("8"))
+            {
+
+                if (input.Length >= 11)
+                {
+                    return false;
+                }
+            }
+
+            else
+            {
+
+                return false ;
+            }
+
+            return true;
+        }
         private void InsertBrand_Load(object sender, EventArgs e)
         {
 
@@ -86,7 +154,7 @@ namespace L2_GLA.BrandSynch
             {"TNT PREPAID", ("TNT", "TNT Prepaid", "TNT")},
             {"SMART PREPAID", ("BUDDY", "Smart Prepaid", "Smart Prepaid")},
             {"SMART POSTPAID", ("POSTPD", "Smart Postpaid", "Smart Postpaid")},
-            {"SMART BRO PREPAID", ("BROPRE", "SmartBro Prepaid", "Smart Bro Prepaid")},
+            {"BRO PREPAID", ("BROPRE", "SmartBro Prepaid", "Smart Bro Prepaid")},
             {"SMART BRO POSTPAID", ("BROPOS", "SmartBro Postpaid", "Smart Bro Postpaid")},
             {"HOME WIFI PREPAID", ("PHPW", "Home Wifi Prepaid", "Home Wifi Prepaid")}
         };
@@ -120,14 +188,14 @@ namespace L2_GLA.BrandSynch
             return true;
         }
 
-        private async Task GenerateLogEntry(long todayUnixTimestamp)
+        private async Task GenerateLogEntry(long todayUnixTimestamp, string formatMin)
         {
             try
             {
                 string query = "SELECT * FROM min_logs WHERE min = @min AND incid = @incid ORDER BY id DESC LIMIT 1";
                 using (var cmd = new MySqlCommand(query, conn.connection))
                 {
-                    cmd.Parameters.AddWithValue("@min", txtmin.Text);
+                    cmd.Parameters.AddWithValue("@min", formatMin);
                     cmd.Parameters.AddWithValue("@incid", incid.Text);
                     using (var reader = await cmd.ExecuteReaderAsync())
                     {
@@ -144,7 +212,7 @@ namespace L2_GLA.BrandSynch
                             }
                         }
                     }
-                    await InsertLogEntry(todayUnixTimestamp);
+                    await InsertLogEntry(todayUnixTimestamp, formatMin);
                 }
             }
             catch (Exception ex)
@@ -153,13 +221,13 @@ namespace L2_GLA.BrandSynch
             }
         }
 
-        private async Task InsertLogEntry(long todayUnixTimestamp)
+        private async Task InsertLogEntry(long todayUnixTimestamp, string formatMin)
         {
-            string format = $",\r\n\"min\": \"{txtmin.Text}\",\r\n\"brand_id\": \"{brand_id}\",\r\n\"brand_name\": \"{brand_name}\",\r\n\"brand_description\": \"{brand_desc}\",\r\n\"is_active\": true,\r\n\"creation_timestamp\": {todayUnixTimestamp},\r\n\"last_update_timestamp\": {todayUnixTimestamp}";
+            string format = $",\r\n\"min\": \"{formatMin}\",\r\n\"brand_id\": \"{brand_id}\",\r\n\"brand_name\": \"{brand_name}\",\r\n\"brand_description\": \"{brand_desc}\",\r\n\"is_active\": true,\r\n\"creation_timestamp\": {todayUnixTimestamp},\r\n\"last_update_timestamp\": {todayUnixTimestamp}";
             txtformat.Text = format;
 
             //txtspiel.Text = $"Done processing the WA for this MIN {txtmin.Text}. Please ask the Subscriber to retry the transaction.\r\nWe will now proceed in closing this ticket.";
-            txtspiel.Text = ("Done processing the WA for this MIN " + txtmin.Text + ". Please ask the Subscriber to retry the transaction." +
+            txtspiel.Text = ("Done processing the WA for this MIN " + formatMin + ". Please ask the Subscriber to retry the transaction." +
                             "\r\nWe will now proceed in closing this ticket." +
                             "\r\nIf the issue is still persistent, reopen with a screenshot of the error encountered." +
                             "\r\n" +
@@ -168,7 +236,7 @@ namespace L2_GLA.BrandSynch
                             "\r\nError:" +
                             "\r\nInvestigation Note:" +
                             "\r\n" +
-                            "\r\nMIN: " + txtmin.Text + "" +
+                            "\r\nMIN: " + formatMin + "" +
                             "\r\nExpected MIN: " + CmbBrand.Text + "" +
                             "\r\nInternal: " + CmbBrand.Text + "" +
                             "\r\nExternal: " + CmbBrand.Text + "" +
@@ -182,7 +250,7 @@ namespace L2_GLA.BrandSynch
             {
                 cmd.Parameters.AddWithValue("@user", GlobalVar.user);
                 cmd.Parameters.AddWithValue("@timestamp", DateTime.Now.ToString());
-                cmd.Parameters.AddWithValue("@min", txtmin.Text);
+                cmd.Parameters.AddWithValue("@min", formatMin);
                 cmd.Parameters.AddWithValue("@newBrand", CmbBrand.Text);
                 cmd.Parameters.AddWithValue("@incid", incid.Text);
                 cmd.Parameters.AddWithValue("@subject", txtsubject.Text);

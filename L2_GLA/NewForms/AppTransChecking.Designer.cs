@@ -39,7 +39,6 @@
             this.txtsearch = new System.Windows.Forms.TextBox();
             this.BtnOpenFile = new System.Windows.Forms.Button();
             this.dgvlist = new System.Windows.Forms.DataGridView();
-            this.DgvVariance = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +46,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgvVariance = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,7 +71,7 @@
             this.Column5,
             this.Column6,
             this.Column7});
-            this.dgvfile.Location = new System.Drawing.Point(272, 566);
+            this.dgvfile.Location = new System.Drawing.Point(272, 605);
             this.dgvfile.Name = "dgvfile";
             this.dgvfile.ReadOnly = true;
             this.dgvfile.RowHeadersVisible = false;
@@ -163,31 +163,8 @@
             this.dgvlist.Name = "dgvlist";
             this.dgvlist.ReadOnly = true;
             this.dgvlist.RowHeadersVisible = false;
-            this.dgvlist.Size = new System.Drawing.Size(778, 192);
+            this.dgvlist.Size = new System.Drawing.Size(778, 180);
             this.dgvlist.TabIndex = 36;
-            // 
-            // DgvVariance
-            // 
-            this.DgvVariance.AllowUserToAddRows = false;
-            this.DgvVariance.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.DgvVariance.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.DgvVariance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DgvVariance.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(193)))), ((int)(((byte)(108)))));
-            this.DgvVariance.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.DgvVariance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvVariance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn5});
-            this.DgvVariance.Location = new System.Drawing.Point(272, 390);
-            this.DgvVariance.Name = "DgvVariance";
-            this.DgvVariance.ReadOnly = true;
-            this.DgvVariance.RowHeadersVisible = false;
-            this.DgvVariance.Size = new System.Drawing.Size(778, 170);
-            this.DgvVariance.TabIndex = 38;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -244,6 +221,29 @@
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Width = 74;
+            // 
+            // DgvVariance
+            // 
+            this.DgvVariance.AllowUserToAddRows = false;
+            this.DgvVariance.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.DgvVariance.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.DgvVariance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DgvVariance.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(93)))), ((int)(((byte)(193)))), ((int)(((byte)(108)))));
+            this.DgvVariance.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DgvVariance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvVariance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn5});
+            this.DgvVariance.Location = new System.Drawing.Point(272, 402);
+            this.DgvVariance.Name = "DgvVariance";
+            this.DgvVariance.ReadOnly = true;
+            this.DgvVariance.RowHeadersVisible = false;
+            this.DgvVariance.Size = new System.Drawing.Size(778, 170);
+            this.DgvVariance.TabIndex = 38;
             // 
             // dataGridViewTextBoxColumn6
             // 

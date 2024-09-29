@@ -641,6 +641,7 @@ C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\L2_GLA.application
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\L2_GLA.exe
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\L2_GLA.pdb
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\BouncyCastle.Crypto.dll
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\BouncyCastle.Cryptography.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\CsvHelper.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\EPPlus.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\EPPlus.Interfaces.dll
@@ -661,6 +662,7 @@ C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\Oracle.DataAccess.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\Oracle.ManagedDataAccess.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\RestSharp.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Buffers.dll
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.ComponentModel.Annotations.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Configuration.ConfigurationManager.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Diagnostics.DiagnosticSource.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.IO.Pipelines.dll
@@ -673,6 +675,7 @@ C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.ValueTuple.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\ZstdSharp.dll
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\BouncyCastle.Crypto.xml
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\BouncyCastle.Cryptography.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\CsvHelper.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\EPPlus.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\Google.Protobuf.pdb
@@ -693,6 +696,7 @@ C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\MySql.Data.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\Newtonsoft.Json.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\RestSharp.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Buffers.xml
+C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Configuration.ConfigurationManager.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.IO.Pipelines.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Memory.xml
@@ -703,6 +707,7 @@ C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Text.Json.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.ValueTuple.xml
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.csproj.AssemblyReference.cache
+C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.BrandSynch.InsertBrand.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Form1.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.frm_account.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Frm_Brand_synch.resources
@@ -729,6 +734,7 @@ C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Frm_variance.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Frm_Var_Report.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Frm_Var_update_Status.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.frm_Var_view.resources
+C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.NewForms.AppTransChecking.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.OpenAPIs.API.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.OpenAPIs.GL.resources
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.Properties.Resources.resources
@@ -743,9 +749,3 @@ C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.application
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.csproj.Up2Date
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.exe
 C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.pdb
-C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\BouncyCastle.Cryptography.dll
-C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.ComponentModel.Annotations.dll
-C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\BouncyCastle.Cryptography.xml
-C:\GLA\tool\V0.0.1\L2_GLA\bin\Debug\System.Configuration.ConfigurationManager.xml
-C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.BrandSynch.InsertBrand.resources
-C:\GLA\tool\V0.0.1\L2_GLA\obj\Debug\L2_GLA.NewForms.AppTransChecking.resources

@@ -135,7 +135,7 @@ namespace L2_GLA.Model
                                         string iload = columnYParts[0].Trim();
                                         iload_value.Add(iload);
                                         await SaveToDatabaseAsync(columnW, iload, columnZ, null);
-                                       // Console.WriteLine($"Processed row {row}: columnW = {columnW}, iload = {iload}, action = {columnZ}");
+                                        //Console.WriteLine($"Processed row {row}: columnW = {columnW}, iload = {iload}, action = {columnZ}");
                                     }
                                 }
                             }
@@ -247,7 +247,7 @@ namespace L2_GLA.Model
                                     {
                                         string app = splitValues[0].Trim();                                      
                                         string iload = splitValues[2].Trim();
-                                       // Console.WriteLine($"app : {app} iload : {iload}");
+                                        Console.WriteLine($"app : {app} iload : {iload}");
                                         string query;
                                         if (app.Length!=0)
                                         {
@@ -292,6 +292,14 @@ namespace L2_GLA.Model
             {
                 System.Windows.MessageBox.Show("An error occurred while processing the Excel file. Check the log for details." + ex.ToString());
                 Console.WriteLine("error" + ex.ToString());
+            }
+        }
+
+        public async Task UpdateNoDBRecord()
+        {
+            using (MySqlCommand cmd = new MySqlCommand("",_conn.connection))
+            {
+
             }
         }
 
@@ -547,13 +555,13 @@ namespace L2_GLA.Model
             catch (MySqlException ex)
             {
                 // Log MySQL-specific exceptions
-                Console.WriteLine($"MySQL error: {ex.Message}");
+               // Console.WriteLine($"MySQL error: {ex.Message}");
                 System.Windows.MessageBox.Show("A database error occurred: " + ex.Message);
             }
             catch (Exception ex)
             {
                 // Log general exceptions
-                Console.WriteLine($"General error: {ex.Message}");
+                //Console.WriteLine($"General error: {ex.Message}");
                 System.Windows.MessageBox.Show("An error occurred: " + ex.Message + ex.ToString());
             }
             
@@ -562,18 +570,20 @@ namespace L2_GLA.Model
         private async Task<List<string>> GetIdsToUpdate(mydb record)
         {
             var idsToUpdate = new List<string>();
-            string selectQuery = $"SELECT id FROM {GlobalVar.tableName} WHERE app_transaction = @app OR iload = @iload";
+            string selectQuery = $"SELECT id,app_transaction,iload FROM {GlobalVar.tableName} WHERE (app_transaction = @app OR iload = @iload) and file_id = @maxid";
 
             using (var cmdSelect = new MySqlCommand(selectQuery, _conn.connection))
             {
                 cmdSelect.Parameters.AddWithValue("@app", record.app_transaction_number);
                 cmdSelect.Parameters.AddWithValue("@iload", record.elp_transaction_number);
+                cmdSelect.Parameters.AddWithValue("@maxid", GlobalVar.maxID);
 
                 using (var dataReader = await cmdSelect.ExecuteReaderAsync())
                 {
                     while (await dataReader.ReadAsync())
                     {
                         idsToUpdate.Add(dataReader["id"].ToString());
+                        //Console.WriteLine($"to be update {idsToUpdate} {dataReader["id"].ToString()}  {dataReader["app_transaction"].ToString()} {dataReader["iload"].ToString()}");
                     }
                 }
             }
@@ -615,6 +625,7 @@ namespace L2_GLA.Model
                     if (string.IsNullOrEmpty(record.elp_transaction_number) || record.elp_transaction_number == "NULL")
                     {
                         newstatus = await CheckGcashStatusAsync(record);
+                        //newstatus = await RefundChecking(record);
                     }
                     else
                     {
@@ -631,6 +642,44 @@ namespace L2_GLA.Model
             return newstatus;
         }
 
+        private async Task<string> RefundChecking(mydb record)
+        {
+            string newstatus = "Need more Investigation";
+
+            string selectQuery = "SELECT  TRANSACTION_TYPE FROM brand_synch_2.tbl_merchant where TRANSACTION_TYPE = 'REFUND' and MERCHANT_TRANS_ID like @apptrans";
+            using (var cmdSelect = new MySqlCommand(selectQuery, _conn.connection))
+            {
+                cmdSelect.Parameters.AddWithValue("@apptrans", '%' + record.app_transaction_number + '%');
+
+                using (var reader = await cmdSelect.ExecuteReaderAsync())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (await reader.ReadAsync())
+                        {
+                            string statusType = reader["TRANSACTION_TYPE"].ToString();
+                              //Console.WriteLine($"app : {record.app_transaction_number} Status : {statusType}");
+                            if (statusType == "REFUND")
+                            {
+                                newstatus = "Not Subject for Refund";
+                            }
+                            else
+                            {
+                              newstatus =   await CheckGcashStatusAsync(record);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        reader.Close();
+                      newstatus =  await CheckGcashStatusAsync(record);
+                        
+                    }                                       
+                }
+            }
+
+            return newstatus;
+        }
 
         private async Task<string> CheckGcashStatusAsync(mydb record)
         {
@@ -646,7 +695,7 @@ namespace L2_GLA.Model
                     while (await reader.ReadAsync())
                     {
                         string statusType = reader["refund"].ToString();
-                        Console.WriteLine($"app : {record.app_transaction_number} Status : {statusType}");
+                       // Console.WriteLine($"app : {record.app_transaction_number} Status : {statusType}");
                         if (statusType == "Not Found")
                         {
                             newstatus = "Failed - For Refund";
@@ -661,9 +710,23 @@ namespace L2_GLA.Model
 
             return newstatus;
         }
-
         private async Task UpdateDatabaseRecord(string id, mydb record, string newstatus)
         {
+            // Check if the ID exists before updating
+            string checkIdQuery = $"SELECT COUNT(*) FROM {GlobalVar.tableName} WHERE id = @id";
+            using (var cmdCheck = new MySqlCommand(checkIdQuery, _conn.connection))
+            {
+                cmdCheck.Parameters.AddWithValue("@id", id);
+
+                var count = (long)await cmdCheck.ExecuteScalarAsync();
+                if (count == 0)
+                {
+                   // Console.WriteLine($"ID {id} not found, skipping update.");
+                    return; // Skip updating if ID doesn't exist
+                }
+            }
+          //  Console.WriteLine($"updating ID {id} {record.app_transaction_number}");
+            // Proceed with the update if the ID exists
             string updateQuery = $"UPDATE {GlobalVar.tableName} SET app_transaction = @app, iload = @iload, dbStatus = @status, remarks = @remarks WHERE id = @id";
 
             using (var cmdUpdate = new MySqlCommand(updateQuery, _conn.connection))
@@ -677,6 +740,22 @@ namespace L2_GLA.Model
                 await cmdUpdate.ExecuteNonQueryAsync();
             }
         }
+
+        //private async Task UpdateDatabaseRecord(string id, mydb record, string newstatus)
+        //{
+        //    string updateQuery = $"UPDATE {GlobalVar.tableName} SET app_transaction = @app, iload = @iload, dbStatus = @status, remarks = @remarks WHERE id = @id";
+
+        //    using (var cmdUpdate = new MySqlCommand(updateQuery, _conn.connection))
+        //    {
+        //        cmdUpdate.Parameters.AddWithValue("@id", id);
+        //        cmdUpdate.Parameters.AddWithValue("@app", record.app_transaction_number);
+        //        cmdUpdate.Parameters.AddWithValue("@iload", record.elp_transaction_number);
+        //        cmdUpdate.Parameters.AddWithValue("@status", record.status);
+        //        cmdUpdate.Parameters.AddWithValue("@remarks", newstatus);
+
+        //        await cmdUpdate.ExecuteNonQueryAsync();
+        //    }
+        //}
 
         private async Task UpdateRemarksAsync()
         {
@@ -1056,7 +1135,7 @@ namespace L2_GLA.Model
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error saving data to database: {ex.Message}");
+               // Console.WriteLine($"Error saving data to database: {ex.Message}");
                 throw; 
             }
         }
@@ -1067,7 +1146,7 @@ namespace L2_GLA.Model
                 using (MySqlCommand inserquery = new MySqlCommand("INSERT INTO `brand_synch_2`.`tbl_variance_file`(`File_id`,`File_name`,`Var_type`,`Status`,`Done_by`,`created_at`)" +
                     "VALUES(@maxid,@fileName,@var,@status,@by,@created)", _conn.connection))
                 {
-                    Console.WriteLine(GlobalVar.gfile_name);
+                 //   Console.WriteLine(GlobalVar.gfile_name);
                     inserquery.Parameters.AddWithValue("@maxid", GlobalVar.maxID);
                     inserquery.Parameters.AddWithValue("@fileName", GlobalVar.gfile_name);
                     inserquery.Parameters.AddWithValue("@var", typeofvariance);

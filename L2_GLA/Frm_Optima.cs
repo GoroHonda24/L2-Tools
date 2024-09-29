@@ -164,6 +164,7 @@ namespace L2_GLA
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            
             if (txtmin.Text == "")
             {
                 dgvlist.Rows.Clear();

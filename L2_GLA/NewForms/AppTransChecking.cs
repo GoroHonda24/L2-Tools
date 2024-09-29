@@ -96,21 +96,24 @@ namespace L2_GLA.NewForms
             try
             {
                 // Assuming 'conn.connection' is your active MySQL connection object
-                using (MySqlCommand cmd = new MySqlCommand($"LOAD DATA INFILE '{selectedFilePath.Replace("\\", "/")}' INTO TABLE tbl_merchant FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES" +
+
+                using (MySqlCommand cmd = new MySqlCommand($"LOAD DATA INFILE '{selectedFilePath.Replace("\\", "/")}' INTO TABLE tbl_merchant FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES " +
                     $"(SETTLEMENT_TXN_ID,MERCHANT_ID, MERCHANT_NAME, SETTLE_DATE, MERCHANT_TRANS_ID, ACQUIREMENT_ID, TRANSACTION_TYPE, TRANSACTION_DATETIME, MERCHANT_REFUND_REQUEST_ID, REFUND_ID, TRANSACTION_AMOUNT, NET_MDR, SETTLE_AMOUNT, WITHHOLDING_TAX);", conn.connection))
                 {
                     await cmd.ExecuteNonQueryAsync();
 
-                    Console.WriteLine($"Upload file: {selectedFilePath}");
-                    return "Data uploaded successfully.";
-                    
                 }
+                File.Delete(selectedFilePath);
+                MessageBox.Show($"File uploaded and deleted: {selectedFilePath}");
+
+                return "Data uploaded successfully and file deleted.";
             }
             catch (Exception ex)
             {
                 // Handle exceptions appropriately
                 return $"Error: {ex.Message}";
             }
+            
         }
 
         public async Task LOAD_FILE()

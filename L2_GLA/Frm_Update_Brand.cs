@@ -120,11 +120,11 @@ namespace L2_GLA
                              " \"last_update_timestamp\": " + todayUnixTimestamp + "}});");
 
                     }
-                    else if (cmbBrand.Text == "SMART BRO PREPAID")
+                    else if (cmbBrand.Text == "BRO PREPAID")
                     {
                         txtformat.Text = ("db.min_metadata.updateOne({\"min\":\"" + txtmin.Text + "\"}," +
                              " {$set:{\"brand_id\": \"BROPRE\"," +
-                             " \"brand_name\": \"BRO Prepaid\"," +
+                             " \"brand_name\": \"SmartBRO Prepaid\"," +
                              " \"brand_description\": \"Smart Bro Prepaid\"," +
                              " \"is_active\": true," +
                              " \"last_update_timestamp\": " + todayUnixTimestamp + "}});");

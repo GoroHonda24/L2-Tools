@@ -63,19 +63,28 @@ namespace L2_GLA
                         {
                             // Clear any existing rows in the dataGridView1
                             dataGridView1.Rows.Clear();
+                            if (Reader.HasRows)
+                            {
+                                while (Reader.Read())
+                                {
+                                    // Add a new row to the dataGridView1 for each result
+                                    dataGridView1.Rows.Add(Reader["REFERENCE_NUMBER"], Reader["STATUS"]);
+                                }
+                                MessageBox.Show($"successfully");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Transaction not found.");
+                            }
 
                             // Iterate through each row in the database result
-                            while (Reader.Read())
-                            {
-                                // Add a new row to the dataGridView1 for each result
-                                dataGridView1.Rows.Add(Reader["REFERENCE_NUMBER"], Reader["STATUS"]);
-                            }
+                           
                         }
                         dataGridView1.AllowUserToAddRows = false;
                     }
 
                     connection.Close();
-                    MessageBox.Show("successfully.");
+                    
 
                     // Perform database operations here
                 }

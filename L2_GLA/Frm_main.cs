@@ -39,7 +39,7 @@ namespace L2_GLA
         public void panelControl()
         {
             panelBrandsync.Visible = false;
-            panelPayment.Visible = false;
+          //  panelPayment.Visible = false;
             panelVariance.Visible = false;
         }
 
@@ -48,8 +48,8 @@ namespace L2_GLA
             if (panelBrandsync.Visible == true)
                 panelBrandsync.Visible = false;
 
-            if (panelPayment.Visible == true)
-                panelPayment.Visible = false;
+           // if (panelPayment.Visible == true)
+           //     panelPayment.Visible = false;
             if (panelVariance.Visible == true)
                 panelVariance.Visible = false;
         }
@@ -308,7 +308,19 @@ namespace L2_GLA
 
         private void btnPayment_Click(object sender, EventArgs e)
         {
-            showSubmenu(panelPayment);
+            //showSubmenu(panelPayment);
+            if (lbltitle.Text != "MERCHANT SETTLEMENT")
+            {
+                CloseActiveForm();
+                lbltitle.Text = "MERCHANT SETTLEMENT";
+                AppTransChecking frmobj = new AppTransChecking();
+                frmobj.TopLevel = false;
+                frmobj.FormBorderStyle = FormBorderStyle.None;
+                frmobj.Dock = DockStyle.Fill;
+                Pmain.Controls.Add(frmobj);
+                frmobj.Show();
+            }
+            hideSubmenu();
         }
 
         private void btnPaymentGcash_Click(object sender, EventArgs e)

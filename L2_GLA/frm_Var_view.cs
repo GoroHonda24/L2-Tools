@@ -43,8 +43,8 @@ namespace L2_GLA
 
             if(GlobalVar.vartype == "maya")
             {
-                using (MySqlCommand cmd = new MySqlCommand ("Select investigation.*, tbl_variance_file.File_Name from investigation join tbl_variance_file ON tbl_variance_file.id = investigation.file_id " +
-                    "where Action in ('Refund to customer', 'Load Reversal or Retry Payment Charging') and  investigation.file_id = @id; ",conn.connection))
+                using (MySqlCommand cmd = new MySqlCommand ("Select tbl_variance_maya.*, tbl_variance_file.File_Name from tbl_variance_maya join tbl_variance_file ON tbl_variance_file.id = tbl_variance_maya.file_id " +
+                    "where  tbl_variance_maya.file_id = @id; ", conn.connection))
                 {
                     cmd.Parameters.AddWithValue("@id", varName);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -57,12 +57,10 @@ namespace L2_GLA
                         {
                                 DataGridViewRow row = (DataGridViewRow)dgvlist.Rows[0].Clone();
                                 //row.Cells[0].Value = reader["id"];
-                                row.Cells[0].Value = reader["MERCHANT_TRANS_ID"];
-                                row.Cells[1].Value = reader["ELP_Reference_Number"].ToString().Replace(" | success", "");
-                                row.Cells[2].Value = reader["Status"];
-                                row.Cells[3].Value = reader["Splunk_Status"];
-                                row.Cells[4].Value = reader["iload"];
-                                row.Cells[5].Value = reader["Remarks"];
+                                row.Cells[0].Value = reader["app_transaction"];
+                                row.Cells[1].Value = reader["iload"];
+                                row.Cells[2].Value = reader["dbStatus"];
+                                row.Cells[3].Value = reader["remarks"];
                                 dgvlist.Rows.Add(row);
                             }
                         }
@@ -71,7 +69,7 @@ namespace L2_GLA
             }
             else
             {
-                using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM brand_synch_2.gcash where file_id = @id ", conn.connection))
+                using (MySqlCommand cmd = new MySqlCommand("SELECT * FROM brand_synch_2.tbl_variance_gcash where file_id = @id ", conn.connection))
                 {
                     cmd.Parameters.AddWithValue("@id", varName);
                     using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -84,12 +82,10 @@ namespace L2_GLA
                         {
                             DataGridViewRow row = (DataGridViewRow)dgvlist.Rows[0].Clone();
                             //row.Cells[0].Value = reader["id"];
-                            row.Cells[0].Value = reader["MERCHANT_TRANS_ID"];
-                            row.Cells[1].Value = reader["ELP_Reference_Number"].ToString().Replace(" | success", "");
-                            row.Cells[2].Value = reader["Status"];
-                            row.Cells[3].Value = reader["Splunk_Status"];
-                            row.Cells[4].Value = reader["iload"];
-                            row.Cells[5].Value = reader["Remarks"];
+                            row.Cells[0].Value = reader["app_transaction"];
+                            row.Cells[1].Value = reader["iload"];
+                            row.Cells[2].Value = reader["dbStatus"];
+                            row.Cells[3].Value = reader["remarks"];
                             dgvlist.Rows.Add(row);
                         }
                     }

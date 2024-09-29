@@ -3,32 +3,52 @@
   "WorkspaceRootPath": "C:\\GLA\\tool\\V0.0.1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\newforms\\apptranschecking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\newforms\\apptranschecking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\newforms\\apptranschecking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\newforms\\apptranschecking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|C:\\GLA\\tool\\V0.0.1\\l2_gla\\frm_variance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_variance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\frm_update_brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_update_brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\frm_variance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_variance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\brandsynch\\insertbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\brandsynch\\insertbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\newforms\\uncreditedload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\newforms\\uncreditedload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\brandsynch\\insertbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\brandsynch\\insertbrand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\frm_optima.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_optima.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\frm_optima.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\frm_optima.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\model\\variance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\model\\variance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\variance\\gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\variance\\gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|c:\\gla\\tool\\v0.0.1\\l2_gla\\variance\\gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{75C974E0-F67B-43D4-8491-9AB89CC9EEB8}|L2_GLA\\L2_GLA.csproj|solutionrelative:l2_gla\\variance\\gcash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -45,93 +65,162 @@
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Frm_main.cs",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_main.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\Frm_main.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_main.cs",
-              "RelativeToolTip": "L2_GLA\\Frm_main.cs",
-              "ViewState": "AQIAAB8BAAAAAAAAAAAvwCkBAAAtAAAA",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Form1.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Form1.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Form1.cs",
+              "RelativeToolTip": "L2_GLA\\Form1.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAlwEEAAAAvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T04:56:28.495Z",
+              "WhenOpened": "2024-10-07T02:19:07.907Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AppTransChecking.cs",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\NewForms\\AppTransChecking.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\NewForms\\AppTransChecking.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\NewForms\\AppTransChecking.cs*",
-              "RelativeToolTip": "L2_GLA\\NewForms\\AppTransChecking.cs*",
-              "ViewState": "AQIAACsBAAAAAAAAAAAswDYBAABNAAAA",
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Form1.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Form1.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Form1.cs [Design]",
+              "RelativeToolTip": "L2_GLA\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T14:34:15.593Z",
+              "WhenOpened": "2024-10-07T02:18:57.057Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Frm_Update_Brand.cs [Design]",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Update_Brand.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Frm_Update_Brand.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Update_Brand.cs [Design]",
+              "RelativeToolTip": "L2_GLA\\Frm_Update_Brand.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T15:07:30.554Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Frm_Optima.cs",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Optima.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Frm_Optima.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Optima.cs",
+              "RelativeToolTip": "L2_GLA\\Frm_Optima.cs",
+              "ViewState": "AQIAAJYAAAAAAAAAAAAvwKUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T13:06:49.149Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AppTransChecking.cs [Design]",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\NewForms\\AppTransChecking.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\NewForms\\AppTransChecking.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\NewForms\\AppTransChecking.cs [Design]*",
-              "RelativeToolTip": "L2_GLA\\NewForms\\AppTransChecking.cs [Design]*",
+              "DocumentIndex": 8,
+              "Title": "Frm_Optima.cs [Design]",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Optima.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Frm_Optima.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_Optima.cs [Design]",
+              "RelativeToolTip": "L2_GLA\\Frm_Optima.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T13:51:17.289Z",
+              "WhenOpened": "2024-10-03T13:06:11.35Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "UncreditedLoad.cs",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\NewForms\\UncreditedLoad.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\NewForms\\UncreditedLoad.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\NewForms\\UncreditedLoad.cs",
-              "RelativeToolTip": "L2_GLA\\NewForms\\UncreditedLoad.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABoAAAAZAAAA",
+              "Title": "InsertBrand.cs",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\BrandSynch\\InsertBrand.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\BrandSynch\\InsertBrand.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\BrandSynch\\InsertBrand.cs",
+              "RelativeToolTip": "L2_GLA\\BrandSynch\\InsertBrand.cs",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAowGwAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T12:59:11.584Z",
+              "WhenOpened": "2024-10-03T06:29:25.152Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "InsertBrand.cs [Design]",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\BrandSynch\\InsertBrand.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\BrandSynch\\InsertBrand.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\BrandSynch\\InsertBrand.cs [Design]",
+              "RelativeToolTip": "L2_GLA\\BrandSynch\\InsertBrand.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-03T06:29:23.131Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Frm_main.cs",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_main.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Frm_main.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_main.cs",
+              "RelativeToolTip": "L2_GLA\\Frm_main.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwCsAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T05:57:32.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Frm_main.cs [Design]",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_main.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Frm_main.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_main.cs [Design]",
+              "RelativeToolTip": "L2_GLA\\Frm_main.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T05:57:29.448Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "gcash.cs",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\gcash.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Variance\\gcash.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\gcash.cs",
+              "RelativeToolTip": "L2_GLA\\Variance\\gcash.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAvwFcAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T03:14:32.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "gcash.cs [Design]",
+              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\gcash.cs",
+              "RelativeDocumentMoniker": "L2_GLA\\Variance\\gcash.cs",
+              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Variance\\gcash.cs [Design]",
+              "RelativeToolTip": "L2_GLA\\Variance\\gcash.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T03:14:30.438Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "variance.cs",
               "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Model\\variance.cs",
               "RelativeDocumentMoniker": "L2_GLA\\Model\\variance.cs",
               "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Model\\variance.cs",
               "RelativeToolTip": "L2_GLA\\Model\\variance.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAASAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB4AAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-19T13:02:59.852Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Frm_variance.cs",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_variance.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\Frm_variance.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_variance.cs",
-              "RelativeToolTip": "L2_GLA\\Frm_variance.cs",
-              "ViewState": "AQIAAHgAAAAAAAAAAAAnwKcAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T13:01:05.014Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Frm_variance.cs [Design]",
-              "DocumentMoniker": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_variance.cs",
-              "RelativeDocumentMoniker": "L2_GLA\\Frm_variance.cs",
-              "ToolTip": "C:\\GLA\\tool\\V0.0.1\\L2_GLA\\Frm_variance.cs [Design]",
-              "RelativeToolTip": "L2_GLA\\Frm_variance.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T06:25:03.19Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }

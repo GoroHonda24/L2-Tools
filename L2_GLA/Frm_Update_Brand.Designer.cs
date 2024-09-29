@@ -107,7 +107,7 @@ namespace L2_GLA
             "TNT PREPAID",
             "SMART PREPAID",
             "SMART POSTPAID",
-            "SMART BRO PREPAID",
+            "BRO PREPAID",
             "SMART BRO POSTPAID",
             "HOME WIFI PREPAID"});
             this.cmbBrand.Location = new System.Drawing.Point(450, 209);

@@ -179,7 +179,7 @@
             this.btnGen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGen.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGen.ForeColor = System.Drawing.Color.White;
-            this.btnGen.Location = new System.Drawing.Point(655, 355);
+            this.btnGen.Location = new System.Drawing.Point(654, 355);
             this.btnGen.Name = "btnGen";
             this.btnGen.Size = new System.Drawing.Size(151, 49);
             this.btnGen.TabIndex = 54;
@@ -209,7 +209,7 @@
             "TNT PREPAID",
             "SMART PREPAID",
             "SMART POSTPAID",
-            "SMART BRO PREPAID",
+            "BRO PREPAID",
             "SMART BRO POSTPAID",
             "HOME WIFI PREPAID"});
             this.CmbBrand.Location = new System.Drawing.Point(655, 109);

@@ -9,19 +9,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Utilities;
-
+using MongoDB.Driver;
+using L2_GLA.connections;
 namespace L2_GLA.BrandSynch
 {
     public partial class InsertBrand : Form
     {
         private readonly MySqlCommand cmd;
         private readonly DBconnect conn = new DBconnect();
+        private readonly MongoDBConnector mongoCon = new MongoDBConnector();
+
         private MySqlDataReader reader;
         private readonly List<string> min = new List<string>();
         private string brand_id, brand_name, brand_desc;
         public InsertBrand()
         {
             if (conn.connection.State != ConnectionState.Open) conn.connection.Open();
+            if (mongoCon.MongoClient.State != ConnectionState.Open) mongoCon.MongoClient.Open();
+
             InitializeComponent();
         }
 

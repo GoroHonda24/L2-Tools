@@ -13,11 +13,11 @@ namespace L2_GLA
 {
     class GlobalVar
     {
-        public static string user, role, checking, team, gfile_name, gfile_id,varName,vartype,access_code, formatedQuery, filepath, tableName;
+        public static string user, role, checking, team, gfile_name, gfile_id,varName,vartype,access_code, formatedQuery, filepath, tableName, t_account, rsa_id;
         public static bool admin = false;
         public static bool login = true;
         public static int maxID = 0, mayarowZ;
-
+        
        // public PostmanEnvironment environment;
         public static string rawHookData;
         public static string rawHookToken;

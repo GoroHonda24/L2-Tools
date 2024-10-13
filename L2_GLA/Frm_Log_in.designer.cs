@@ -84,7 +84,7 @@ namespace L2_GLA
             this.txtpass.PasswordChar = '*';
             this.txtpass.Size = new System.Drawing.Size(316, 29);
             this.txtpass.TabIndex = 3;
-            this.txtpass.Enter += new System.EventHandler(this.txtpass_Enter);
+            //this.txtpass.Enter += new System.EventHandler(this.txtpass_Enter);
             this.txtpass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtpass_KeyDown);
             // 
             // button1
